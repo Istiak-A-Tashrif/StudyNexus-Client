@@ -7,7 +7,7 @@ import {
 
 const Footer = () => {
   return (
-    <section className="">
+    <section>
       <div className="container gap-6 flex items-center justify-around ">
         <div className="md:flex items-center justify-between gap-10 lg:justify-normal ">
           <div className="lg:w-1/2 md:w-1/3 rounded-md ">

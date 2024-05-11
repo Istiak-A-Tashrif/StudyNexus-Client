@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CiSettings } from "react-icons/ci";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import useThemeDetector from "../../Hooks/useThemeDetector";
 
 const navLink = (
@@ -58,8 +58,8 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 p-0">
       <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+        <div className="dropdown mr-2">
+          <div tabIndex={0} role="button" className="lg:hidden px-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -93,12 +93,12 @@ const Navbar = () => {
       {/* navbar end */}
       <div className="navbar-end">
         <div className="dropdown dropdown-end dropdown-bottom">
-          <div tabIndex={0} role="button" className="text-3xl m-1">
-            <CiSettings />
+          <div tabIndex={0} role="button" className="text-xl">
+          <BsThreeDotsVertical />
           </div>
           <ul
             tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 items-start space-y-2"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <details>
@@ -142,7 +142,7 @@ const Navbar = () => {
                 </div>
               </details>
             </li>
-            <li>Log out</li>
+            <li className="cursor-pointer">Log out</li>
           </ul>
         </div>
       </div>
