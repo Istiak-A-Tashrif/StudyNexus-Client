@@ -18,7 +18,10 @@ const Banner = () => {
             on assignments with friends. Create, complete, and grade assignments
             in a supportive community.
           </p>
-          
+          <div className="flex justify-center gap-6">
+          <button className="btn btn-info">Take Assignment</button>
+          <button className="btn btn-outline btn-info ">Take Assignment</button>
+          </div>
         </div>
       </div>
     </div>
