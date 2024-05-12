@@ -8,7 +8,7 @@ const AssignmentDetails = () => {
   const assignmentData = {
     title: "Sample Assignment",
     description:
-      "This is a sample assignment description. Replace this with the actual assignment description.",
+      "Learn to build mobile apps using React Native framework. Suitable for beginners with JavaScript knowledge.",
     level: "beginner",
     requirementDoc: "https://example.com/requirement.pdf",
     deadline: "2024-06-30",
@@ -59,9 +59,9 @@ const AssignmentDetails = () => {
           {assignmentData.creator.email}
         </div>
 
-        {/* Level Level */}
+        {/* Level */}
         <div className="mb-4">
-          <strong className="text-[#AD88C6]">Level Level:</strong>{" "}
+          <strong className="text-[#AD88C6]">Level:</strong>{" "}
           {assignmentData.level}
         </div>
 

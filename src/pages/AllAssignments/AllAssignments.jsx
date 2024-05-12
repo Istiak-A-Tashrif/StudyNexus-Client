@@ -1,6 +1,7 @@
 import React from 'react';
 import AssignmentCard from '../Home/AssignmentCard';
 import { FaChevronDown } from "react-icons/fa";
+import { useLoaderData } from 'react-router-dom';
 
 const AllAssignments = () => {
     const handleDropdown = () => {
@@ -11,6 +12,7 @@ const AllAssignments = () => {
         }
       };
     
+      const allAssignments = useLoaderData();
     return (
         <div className="">
             <div className="flex justify-center">
@@ -44,12 +46,9 @@ const AllAssignments = () => {
         </details>
       </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            <AssignmentCard></AssignmentCard>
-            <AssignmentCard></AssignmentCard>
-            <AssignmentCard></AssignmentCard>
-            <AssignmentCard></AssignmentCard>
-            <AssignmentCard></AssignmentCard>
-            <AssignmentCard></AssignmentCard>
+            {
+              allAssignments.map(data => <AssignmentCard key={data._id} data={data}></AssignmentCard>)
+            }
         </div>
         </div>
     );

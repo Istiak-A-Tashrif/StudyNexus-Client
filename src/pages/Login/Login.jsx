@@ -53,7 +53,7 @@ const Login = () => {
 
     loginUser(email, password)
       .then(() => {
-        toast.success("User created succcesfully", {
+        toast.success("User created successfully", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,

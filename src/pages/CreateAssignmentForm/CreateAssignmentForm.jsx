@@ -4,6 +4,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 
 const CreateAssignmentForm = () => {
+  const currentDate = new Date();
+
   const initialFormState = {
     title: "",
     description: "",
@@ -14,6 +16,7 @@ const CreateAssignmentForm = () => {
     email: "",
     requirementDoc: "",
     thumbnail: "",
+    postDate: format(currentDate, 'dd/MM/yyyy'),
   };
 
   const [formData, setFormData] = useState(initialFormState);
@@ -80,10 +83,10 @@ const CreateAssignmentForm = () => {
         />
       </div>
 
-      {/* Level Level Field */}
+      {/* Level Field */}
       <div className="form-control">
         <label htmlFor="level" className="label">
-          <span className="label-text text-gray-900">Level Level</span>
+          <span className="label-text text-gray-900">Level</span>
         </label>
         <select
           name="level"

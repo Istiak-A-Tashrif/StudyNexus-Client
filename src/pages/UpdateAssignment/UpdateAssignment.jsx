@@ -80,10 +80,10 @@ const UpdateAssignment = () => {
           />
         </div>
   
-        {/* Level Level Field */}
+        {/* Level Field */}
         <div className="form-control">
           <label htmlFor="level" className="label">
-            <span className="label-text text-gray-900">Level Level</span>
+            <span className="label-text text-gray-900">Level</span>
           </label>
           <select
             name="level"

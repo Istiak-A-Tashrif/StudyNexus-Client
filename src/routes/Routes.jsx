@@ -19,7 +19,8 @@ const Routes = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: () => fetch("http://localhost:5000")
             },
             {
                 path: "/createAssignment",
@@ -27,7 +28,8 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "/allAssignments",
-                element:<AllAssignments></AllAssignments>
+                element:<AllAssignments></AllAssignments>,
+                loader: () => fetch("http://localhost:5000/allAssignments")
             },
             {
                 path: "/details",
