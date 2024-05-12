@@ -23,28 +23,28 @@ const Footer = () => {
               <a
                 rel="noopener noreferrer"
                 title="Email"
-                className="flex items-center justify-center rounded-full hover:text-red-400 text-xl"
+                className="flex items-center justify-center rounded-full hover:text-[#AD88C6] text-xl"
               >
                 <FaFacebook />
               </a>
               <a
                 rel="noopener noreferrer"
                 title="Twitter"
-                className="flex items-center justify-center rounded-full hover:text-red-400 text-xl"
+                className="flex items-center justify-center rounded-full hover:text-[#AD88C6] text-xl"
               >
                 <FaTwitterSquare />
               </a>
               <a
                 rel="noopener noreferrer"
                 title="GitHub"
-                className="flex items-center justify-center rounded-full hover:text-red-400 text-xl"
+                className="flex items-center justify-center rounded-full hover:text-[#AD88C6] text-xl"
               >
                 <FaInstagram />
               </a>
               <a
                 rel="noopener noreferrer"
                 title="GitHub"
-                className="flex items-center justify-center rounded-full hover:text-red-400 text-xl"
+                className="flex items-center justify-center rounded-full hover:text-[#AD88C6] text-xl"
               >
                 <FaLinkedin />
               </a>
