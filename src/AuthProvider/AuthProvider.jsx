@@ -20,7 +20,6 @@ const AuthProvider = ({children}) => {
 
   // providers
   const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
 
     // create user
   const createUser = (email, password) => {
@@ -48,15 +47,20 @@ const AuthProvider = ({children}) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // sign in using github
-  const githubSignIn = () => {
-    setLoader(true);
-    return signInWithPopup(auth, githubProvider);
-  };
-
   // sign out
   const userSignOut = () => {
     setUser(null);
+    toast.success('Logged out', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+      });
     return signOut(auth);
   };
 
@@ -86,7 +90,6 @@ const AuthProvider = ({children}) => {
         createUser,
         update,
         notifyError,
-        githubSignIn,
         googleSignIn,
         user,
         setUser,

@@ -10,6 +10,7 @@ import CheckPage from "../pages/CheckPage/CheckPage";
 import UpdateAssignment from "../pages/UpdateAssignment/UpdateAssignment";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import UserProfile from "../pages/UserProfile/UserProfile";
 
 const Routes = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/register",
                 element:<Register></Register>
+            },
+            {
+                path: "/profile",
+                element:<UserProfile></UserProfile>
             },
         ]
     }

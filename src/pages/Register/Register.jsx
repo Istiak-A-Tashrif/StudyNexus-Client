@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
+import useAuth from "../../Hooks/useAuth";
+import { Slide, toast } from "react-toastify";
 
 const Register = () => {
   const {
@@ -16,6 +18,28 @@ const Register = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [accepted, setAccepted] = useState(false);
 
+  const {
+    createUser,
+    update,
+    notifyError,
+    googleSignIn,
+    user,
+    setUser,
+  } = useAuth();
+
+  const notify = () =>
+    toast.success("User created succcesfully", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Slide,
+    });
+
   const handleAcceptance = () => {
     setAccepted(true);
     setModalOpen(false);
@@ -27,7 +51,30 @@ const Register = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data); // Handle form submission logic here
+    const { email, password, name, photo } = data;
+
+    createUser(email, password)
+      .then(() => {
+        notify();
+        update(name, photo).then(() => {
+          setUser({ ...user, displayName: name, photoURL: photo });
+        });
+      })
+      .catch((error) => {
+        console.error("error", error.message);
+        notifyError();
+      });
+  };
+
+  const handleSocialLogin = (socialProvider) => {
+    socialProvider()
+      .then((res) => {
+        notify();
+      })
+      .catch((error) => {
+        console.error(error.message);
+        notifyError();
+      });
   };
 
   const togglePasswordVisibility = () => {
@@ -67,15 +114,10 @@ const Register = () => {
             <input
               type="text"
               id="name"
-              {...register("name", { required: true })}
-              className={`bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  ${
-                errors.name ? "border-red-500" : ""
-              }`}
+              {...register("name")}
+              className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="Your Name"
             />
-            {errors.name && (
-              <span className="text-sm text-red-500">Name is required</span>
-            )}
           </div>
           <div>
             <label
@@ -87,17 +129,10 @@ const Register = () => {
             <input
               type="text"
               id="photo"
-              {...register("photo", { required: true })}
-              className={`bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   ${
-                errors.photo ? "border-red-500" : ""
-              }`}
+              {...register("photo")}
+              className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="https://example.com/your-photo.jpg"
             />
-            {errors.photo && (
-              <span className="text-sm text-red-500">
-                Photo URL is required
-              </span>
-            )}
           </div>
           <div>
             <label
@@ -237,7 +272,7 @@ const Register = () => {
           <div className="flex justify-center space-x-4">
             <button type="button"
               aria-label="Log in with Google"
-              className="btn btn-ghost flex items-center gap-2 text-gray-900"
+              className="btn btn-ghost flex items-center gap-2 text-gray-900" onClick={() => handleSocialLogin(googleSignIn)}
             >
               <FaGoogle />
               <span className="font-bold">Google</span>

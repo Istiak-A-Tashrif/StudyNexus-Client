@@ -1,39 +1,43 @@
 import { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import useThemeDetector from "../../Hooks/useThemeDetector";
-import { Link } from "react-router-dom";
-
-const navLink = (
-  <>
-    <li>
-      <Link to={"/"}>Home</Link>
-    </li>
-    <li>
-      <Link to={"/allAssignments"}>All Assignments</Link>
-    </li>
-    <li>
-      <details>
-        <summary>My Assignments</summary>
-        <ul className="p-2 z-20">
-          <li>
-            <Link to={"/added"}>Added</Link>
-          </li>
-          <li>
-            <Link to={"/submitted"}>Submitted</Link>
-          </li>
-        </ul>
-      </details>
-    </li>
-    <li>
-      <Link to={"/createAssignment"}>Create Assignment</Link>
-    </li>
-    <li>
-      <Link to={"/register"}>Register</Link>
-    </li>
-  </>
-);
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user, userSignOut } = useAuth();
+  const navigate = useNavigate();
+
+  const navLink = (
+    <>
+      <li>
+        <Link to={"/"}>Home</Link>
+      </li>
+      <li>
+        <Link to={"/allAssignments"}>All Assignments</Link>
+      </li>
+      <li>
+        <details>
+          <summary>My Assignments</summary>
+          <ul className="p-2 z-20">
+            <li>
+              <Link to={"/added"}>Added</Link>
+            </li>
+            <li>
+              <Link to={"/submitted"}>Submitted</Link>
+            </li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <Link to={"/createAssignment"}>Create Assignment</Link>
+      </li>
+      <li>
+        <Link to={"/register"}>Register</Link>
+      </li>
+    </>
+  );
+
   const [selectedOption, setSelectedOption] = useState("");
   useEffect(() => {
     const themeSettings = localStorage.getItem("themeSettings");
@@ -167,8 +171,8 @@ const Navbar = () => {
                 </div>
               </details>
             </li>
-            <li className="cursor-pointer p-2"><button>Log out</button></li>
-            <li className="cursor-pointer p-2"><Link to={"/login"}>Log in</Link></li>
+            <li className="cursor-pointer p-2" onClick={()=>navigate("/profile")}>Profile</li>
+           {user? <li className="p-2 cursor-pointer" onClick={userSignOut}>Log out</li> : <li className="p-2 cursor-pointer" onClick={() =>navigate("/login")}>Log in</li>}
           </ul>
         </div>
       </div>

@@ -17,7 +17,7 @@ const TermsAndConditionsModal = ({ isOpen, onDecline, onAccept }) => {
 
   return (
     <div className={`fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-gray-800 bg-opacity-50 ${isOpen ? '' : 'hidden'} z-20`}>
-      <div className="bg-white p-6 rounded-lg max-w-lg" style={{ maxHeight: `calc(100% - 40px)`, height: modalHeight, overflowY: 'auto' }}>
+      <div className="bg-white text-gray-900 p-6 rounded-lg max-w-lg" style={{ maxHeight: `calc(100% - 40px)`, height: modalHeight, overflowY: 'auto' }}>
         <h2 className="text-xl font-semibold mb-4">Terms and Conditions</h2>
         <div id="modal-content">
           <p className="mb-4">Welcome to our platform. By registering, you agree to the following terms and conditions:</p>
