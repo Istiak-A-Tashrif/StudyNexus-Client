@@ -4,7 +4,7 @@ import bgimg from "../../assets/media.jpg";
 const Banner = () => {
   return (
     <div
-      className="hero bg-cover bg-no-repeat min-h-[calc(100vh-425px)]"
+      className="hero bg-cover bg-no-repeat min-h-[calc(100vh-425px)] mt-4"
       style={{ backgroundImage: `url(${bgimg})` }}
     >
       <div className="hero-overlay bg-opacity-60"></div>

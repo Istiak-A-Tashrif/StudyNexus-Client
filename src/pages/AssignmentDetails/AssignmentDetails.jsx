@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import AssignmentSubmissionForm from "./AssignmentSubmissionForm";
 import img1 from "../../assets/media.jpg";
+import { useNavigate } from "react-router-dom";
 
 const AssignmentDetails = () => {
+  const navigate = useNavigate();
   const assignmentData = {
     title: "Sample Assignment",
     description:
@@ -84,7 +86,7 @@ const AssignmentDetails = () => {
 
         {/* View Assignment Button */}
         <div className="flex gap-4">
-        <button className="btn border-none bg-[#AD88C6] hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full">
+        <button className="btn border-none bg-[#AD88C6] hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full" onClick={ () => navigate("/update")}>
           Update Assignment
         </button>
         <button className="btn border-none bg-[#7469B6] hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full" onClick={handleOpenModal}>

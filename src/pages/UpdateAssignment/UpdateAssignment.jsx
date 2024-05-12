@@ -47,7 +47,7 @@ const UpdateAssignment = () => {
         onSubmit={handleSubmit}
         className="max-w-2xl mx-auto my-12 p-6 space-y-6 bg-white rounded-lg shadow-md text-gray-900"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Create Assignment</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Update Assignment</h2>
   
         {/* Title Field */}
         <div className="form-control">

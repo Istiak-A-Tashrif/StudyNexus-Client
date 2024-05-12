@@ -20,12 +20,17 @@ const AssignmentCard = () => {
           <h2 className="mb-1 text-xl font-semibold">
             Nam cu platonem posidonium sanctus debitis te
           </h2>
+          <div className="flex justify-between font-medium my-2">
+          <p>Difficulty: Expert</p>
+          <p>Marks: 60</p>
+          </div>
           <p className="text-sm">
             Eu qualisque aliquando mel, id lorem detraxit nec, ad elit minimum
             pri. Illum ipsum detracto ne cum. Mundi nemore te ius, vim ad illud
             atqui apeirian...
           </p>
         </div>
+
         <div className="flex space-x-4">
           <img
             alt=""

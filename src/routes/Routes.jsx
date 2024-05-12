@@ -4,6 +4,10 @@ import Main from "../layout/Main";
 import CreateAssignmentForm from "../pages/CreateAssignmentForm/CreateAssignmentForm";
 import AllAssignments from "../pages/AllAssignments/AllAssignments";
 import AssignmentDetails from "../pages/AssignmentDetails/AssignmentDetails";
+import AddedAssignments from "../pages/AddedAssignments/AddedAssignments";
+import SubmittedAssignments from "../pages/SubmittedAssignments/SubmittedAssignments";
+import CheckPage from "../pages/CheckPage/CheckPage";
+import UpdateAssignment from "../pages/UpdateAssignment/UpdateAssignment";
 
 const Routes = createBrowserRouter([
     {
@@ -25,6 +29,22 @@ const Routes = createBrowserRouter([
             {
                 path: "/details",
                 element:<AssignmentDetails></AssignmentDetails>
+            },
+            {
+                path: "/added",
+                element:<AddedAssignments></AddedAssignments>
+            },
+            {
+                path: "/submitted",
+                element:<SubmittedAssignments></SubmittedAssignments>
+            },
+            {
+                path: "/check",
+                element:<CheckPage></CheckPage>,
+            },
+            {
+                path: "/update",
+                element:<UpdateAssignment></UpdateAssignment>
             },
         ]
     }

@@ -16,10 +16,10 @@ const navLink = (
         <summary>My Assignments</summary>
         <ul className="p-2 z-20">
           <li>
-            <a>Added</a>
+            <Link to={"/added"}>Added</Link>
           </li>
           <li>
-            <a>Submitted</a>
+            <Link to={"/submitted"}>Submitted</Link>
           </li>
         </ul>
       </details>
@@ -119,7 +119,7 @@ const Navbar = () => {
           >
             <li>
               <details>
-                <summary className="px-0">Dark mode</summary>
+                <summary className="p-2">Dark mode</summary>
                 <div className="form-control">
                   {/* On option */}
                   <label className="label cursor-pointer">
@@ -159,7 +159,7 @@ const Navbar = () => {
                 </div>
               </details>
             </li>
-            <li className="cursor-pointer">Log out</li>
+            <li className="cursor-pointer p-2">Log out</li>
           </ul>
         </div>
       </div>
