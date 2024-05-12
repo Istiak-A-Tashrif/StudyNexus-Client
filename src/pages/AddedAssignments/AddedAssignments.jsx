@@ -12,7 +12,7 @@ const AddedAssignments = () => {
           <tr>
             <th></th>
             <th>Title</th>
-            <th>Difficulty</th>
+            <th>Level</th>
             <th>Post Date</th>
             <th>Total Submission</th>
           </tr>

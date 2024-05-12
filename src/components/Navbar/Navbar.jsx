@@ -27,6 +27,9 @@ const navLink = (
     <li>
       <Link to={"/createAssignment"}>Create Assignment</Link>
     </li>
+    <li>
+      <Link to={"/register"}>Register</Link>
+    </li>
   </>
 );
 
@@ -109,6 +112,11 @@ const Navbar = () => {
 
       {/* navbar end */}
       <div className="navbar-end">
+      <div className="avatar">
+  <div className="w-6 rounded-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+  </div>
+</div>
         <div className="dropdown dropdown-end dropdown-bottom">
           <div tabIndex={0} role="button" className="text-xl">
             <BsThreeDotsVertical />
@@ -159,7 +167,8 @@ const Navbar = () => {
                 </div>
               </details>
             </li>
-            <li className="cursor-pointer p-2">Log out</li>
+            <li className="cursor-pointer p-2"><button>Log out</button></li>
+            <li className="cursor-pointer p-2"><Link to={"/login"}>Log in</Link></li>
           </ul>
         </div>
       </div>

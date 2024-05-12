@@ -8,6 +8,8 @@ import AddedAssignments from "../pages/AddedAssignments/AddedAssignments";
 import SubmittedAssignments from "../pages/SubmittedAssignments/SubmittedAssignments";
 import CheckPage from "../pages/CheckPage/CheckPage";
 import UpdateAssignment from "../pages/UpdateAssignment/UpdateAssignment";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
 const Routes = createBrowserRouter([
     {
@@ -45,6 +47,14 @@ const Routes = createBrowserRouter([
             {
                 path: "/update",
                 element:<UpdateAssignment></UpdateAssignment>
+            },
+            {
+                path: "/login",
+                element:<Login></Login>
+            },
+            {
+                path: "/register",
+                element:<Register></Register>
             },
         ]
     }

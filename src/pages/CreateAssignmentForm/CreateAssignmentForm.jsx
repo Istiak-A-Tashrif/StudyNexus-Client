@@ -7,7 +7,7 @@ const CreateAssignmentForm = () => {
   const initialFormState = {
     title: "",
     description: "",
-    difficulty: "beginner",
+    level: "beginner",
     marks: "",
     deadline: format(new Date(), "dd/MM/yyyy"),
     name: "",
@@ -45,7 +45,7 @@ const CreateAssignmentForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-2xl mx-auto my-12 p-6 space-y-6 bg-white rounded-lg shadow-md text-gray-900"
+      className="max-w-2xl mx-auto my-12 p-6 space-y-6 bg-[#FFE6E6] rounded-lg shadow-md text-gray-900"
     >
       <h2 className="text-2xl font-bold mb-6 text-center">Create Assignment</h2>
 
@@ -80,15 +80,15 @@ const CreateAssignmentForm = () => {
         />
       </div>
 
-      {/* Difficulty Level Field */}
+      {/* Level Level Field */}
       <div className="form-control">
-        <label htmlFor="difficulty" className="label">
-          <span className="label-text text-gray-900">Difficulty Level</span>
+        <label htmlFor="level" className="label">
+          <span className="label-text text-gray-900">Level Level</span>
         </label>
         <select
-          name="difficulty"
-          id="difficulty"
-          value={formData.difficulty}
+          name="level"
+          id="level"
+          value={formData.level}
           onChange={handleChange}
           className="select select-bordered w-full bg-white"
           required

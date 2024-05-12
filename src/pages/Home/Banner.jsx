@@ -21,7 +21,7 @@ const Banner = () => {
           </p>
           <div className="flex justify-center gap-4">
           <Link to={'/allAssignments'}><button className="btn btn-info rounded-full">Take Assignment</button></Link>
-          <button className="btn btn-outline hover:bg-[#1F2138] border-[#FFE6E6] rounded-full text-[#FFE6E6]">Create Assignment</button>
+          <Link to={"/createAssignment"}><button className="btn btn-outline hover:bg-[#1F2138] border-[#FFE6E6] rounded-full text-[#FFE6E6]">Create Assignment</button></Link>
           </div>
         </div>
       </div>

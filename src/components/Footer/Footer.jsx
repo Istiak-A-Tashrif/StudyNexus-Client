@@ -14,10 +14,8 @@ const Footer = () => {
             <h1 className="text-2xl font-extrabold font-rowdies text-[#7469B6]">
               Study<span className="text-[#AD88C6]">Nexus</span>
             </h1>
-            <p className="my-4">
-              Subscribe to our newsletter for exclusive land listings and
-              investment insights. Stay updated with the latest opportunities in
-              the land real estate market!
+            <p className="my-4 lg:w-2/3">
+            Stay ahead in your academic journey with StudyNexus! Get exclusive study resources, insightful articles, and updates on the latest educational opportunities. Join our community today!
             </p>
             <div className="flex mb-6 space-x-4 lg:pt-0 lg:col-end-13">
               <a

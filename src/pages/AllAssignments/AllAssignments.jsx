@@ -16,7 +16,7 @@ const AllAssignments = () => {
             <div className="flex justify-center">
         <details id="dropOrUp" className="dropdown my-4 mt-6">
           <summary className="m-1 btn btn-info w-max">
-            Sort By <FaChevronDown className="ml-1" />
+            Filter <FaChevronDown className="ml-1" />
           </summary>
           <ul
             className="p-2 shadow menu dropdown-content z-[20] bg-base-100 rounded-box w-52"

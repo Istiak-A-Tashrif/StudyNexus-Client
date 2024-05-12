@@ -5,6 +5,7 @@ const AssignmentSubmissionForm = ({ isOpen, onClose }) => {
     title: "",
     githubRepo: "",
     demoUrl: "",
+    note: "", // Add note field to the formData state
   });
 
   const handleChange = (e) => {
@@ -25,6 +26,7 @@ const AssignmentSubmissionForm = ({ isOpen, onClose }) => {
       title: "",
       githubRepo: "",
       demoUrl: "",
+      note: "", // Clear note field too
     });
     
     // Close the modal
@@ -85,6 +87,20 @@ const AssignmentSubmissionForm = ({ isOpen, onClose }) => {
                 className="input input-bordered w-full bg-white"
                 required
               />
+            </div>
+
+            <div className="form-control">
+              <label htmlFor="note" className="label">
+                Note
+              </label>
+              <textarea
+                name="note"
+                id="note"
+                value={formData.note}
+                onChange={handleChange}
+                className="input input-bordered w-full bg-white h-24"
+                placeholder="Add a quick note..."
+              ></textarea>
             </div>
 
             <div className="flex justify-end mt-6">

@@ -9,7 +9,7 @@ const AssignmentDetails = () => {
     title: "Sample Assignment",
     description:
       "This is a sample assignment description. Replace this with the actual assignment description.",
-    difficulty: "beginner",
+    level: "beginner",
     requirementDoc: "https://example.com/requirement.pdf",
     deadline: "2024-06-30",
     thumbnail: img1,
@@ -59,10 +59,10 @@ const AssignmentDetails = () => {
           {assignmentData.creator.email}
         </div>
 
-        {/* Difficulty Level */}
+        {/* Level Level */}
         <div className="mb-4">
-          <strong className="text-[#AD88C6]">Difficulty Level:</strong>{" "}
-          {assignmentData.difficulty}
+          <strong className="text-[#AD88C6]">Level Level:</strong>{" "}
+          {assignmentData.level}
         </div>
 
         {/* Requirement Document Link */}

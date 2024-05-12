@@ -41,7 +41,7 @@ const Faq = () => {
                 To create a study assignment, simply navigate to the "Create
                 Assignment" page and fill out the required fields, including the
                 assignment title, description, marks, thumbnail image URL,
-                difficulty level, and due date.
+                level level, and due date.
               </p>
             </div>
             <div className="collapse collapse-arrow ">

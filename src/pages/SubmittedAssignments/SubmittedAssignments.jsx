@@ -27,7 +27,7 @@ const SubmittedAssignments = () => {
               <thead>
                 <tr>
                   <th>Title</th>
-                  <th>Difficulty</th>
+                  <th>Level</th>
                   <th>Marks</th>
                   <th>Feedback</th>
                 </tr>
@@ -51,7 +51,7 @@ const SubmittedAssignments = () => {
               <thead>
                 <tr>
                   <th>Title</th>
-                  <th>Difficulty</th>
+                  <th>Level</th>
                   <th>Marks</th>
                   <th>Feedback</th>
                 </tr>
