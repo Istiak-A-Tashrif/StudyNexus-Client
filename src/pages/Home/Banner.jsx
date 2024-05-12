@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import bgimg from "../../assets/media.jpg";
 
 const Banner = () => {
@@ -18,9 +19,9 @@ const Banner = () => {
             on assignments with friends. Create, complete, and grade assignments
             in a supportive community.
           </p>
-          <div className="flex justify-center gap-6">
-          <button className="btn btn-info">Take Assignment</button>
-          <button className="btn btn-outline btn-info ">Take Assignment</button>
+          <div className="flex justify-center gap-4">
+          <Link to={'/allAssignments'}><button className="btn btn-info rounded-full">Take Assignment</button></Link>
+          <button className="btn btn-outline hover:bg-[#1F2138] border-[#FFE6E6] rounded-full text-[#FFE6E6]">Create Assignment</button>
           </div>
         </div>
       </div>

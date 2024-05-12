@@ -3,7 +3,7 @@ import faq from "../../assets/faqAnimate.json";
 
 const Faq = () => {
   return (
-    <div className="my-14">
+    <div className="mt-14">
       <div className="text-center">
         <h1 className="text-3xl font-bold">Frequently Asked Questions</h1>
         <p className="mt-2 text-lg">

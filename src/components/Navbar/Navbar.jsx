@@ -1,14 +1,31 @@
 import { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import useThemeDetector from "../../Hooks/useThemeDetector";
+import { Link } from "react-router-dom";
 
 const navLink = (
   <>
     <li>
-      <a>Item 1</a>
+      <Link to={"/"}>Home</Link>
     </li>
     <li>
-      <a>Item 3</a>
+      <Link to={"/allAssignments"}>All Assignments</Link>
+    </li>
+    <li>
+      <details>
+        <summary>My Assignments</summary>
+        <ul className="p-2 z-20">
+          <li>
+            <a>Added</a>
+          </li>
+          <li>
+            <a>Submitted</a>
+          </li>
+        </ul>
+      </details>
+    </li>
+    <li>
+      <Link to={"/createAssignment"}>Create Assignment</Link>
     </li>
   </>
 );
@@ -18,9 +35,9 @@ const Navbar = () => {
   useEffect(() => {
     const themeSettings = localStorage.getItem("themeSettings");
     if (themeSettings === "on") {
-     return setSelectedOption("on");
+      return setSelectedOption("on");
     } else if (themeSettings === "off") {
-     return setSelectedOption("off");
+      return setSelectedOption("off");
     }
     setSelectedOption("system");
   }, []);
@@ -94,7 +111,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <div className="dropdown dropdown-end dropdown-bottom">
           <div tabIndex={0} role="button" className="text-xl">
-          <BsThreeDotsVertical />
+            <BsThreeDotsVertical />
           </div>
           <ul
             tabIndex={0}
