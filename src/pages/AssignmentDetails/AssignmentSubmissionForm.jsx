@@ -1,11 +1,23 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
-const AssignmentSubmissionForm = ({ isOpen, onClose }) => {
+const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
+  const navigate = useNavigate()
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
-    title: "",
+    title: assignmentData?.title,
     githubRepo: "",
     demoUrl: "",
-    note: "", // Add note field to the formData state
+    note: "",
+    obtainedMarks: 0,
+    fullMarks: parseInt(assignmentData?.marks),
+    userName: user?.displayName,
+    id: assignmentData?._id,
+    level: assignmentData?.level,
   });
 
   const handleChange = (e) => {
@@ -16,18 +28,39 @@ const AssignmentSubmissionForm = ({ isOpen, onClose }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const { mutateAsync } = useMutation({
+    mutationFn: async ( formData ) => {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL}/submit`,
+        formData
+      );
+      return data;
+    },
+    onSuccess: (data) => {
+      if (data.acknowledged) {
+        Swal.fire({
+          title: "Success",
+          text: "The assignment has been submitted",
+          icon: "success",
+        });
+      }
+      navigate("/submitted")
+    },
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    // Handle form submission (e.g., send data to server)
+    
+    await mutateAsync(formData);
 
     // Clear the form
-    setFormData({
-      title: "",
+    setFormData((prevData) => ({
+      ...prevData,
       githubRepo: "",
       demoUrl: "",
-      note: "", // Clear note field too
-    });
+      note: "", 
+    }));
     
     // Close the modal
     onClose();
@@ -48,15 +81,9 @@ const AssignmentSubmissionForm = ({ isOpen, onClose }) => {
               <label htmlFor="title" className="label">
                 Assignment Title
               </label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                value={formData.title}
-                onChange={handleChange}
-                className="input input-bordered w-full bg-white"
-                required
-              />
+              <p className="input bg-white flex items-center">
+                {formData.title}
+              </p>
             </div>
 
             <div className="form-control">

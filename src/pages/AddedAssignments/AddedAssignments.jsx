@@ -75,7 +75,7 @@ const AddedAssignments = () => {
   }
 
   if (myAssignment.length === 0) {
-    return <div>No assignments found.</div>;
+    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl">No assignments found.</div>;
   }
 
   return (

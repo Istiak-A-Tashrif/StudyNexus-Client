@@ -88,6 +88,12 @@ const AssignmentDetails = () => {
           </a>
         </div>
 
+        {/* marks*/}
+        <div className="mb-4">
+          <strong className="text-[#AD88C6]">Full Mark:</strong>{" "}
+          {assignmentData?.marks}
+        </div>
+
         {/* Deadline */}
         <div className="mb-4">
           <strong className="text-[#AD88C6]">Deadline:</strong>{" "}
@@ -104,7 +110,7 @@ const AssignmentDetails = () => {
         </button>
         </div>
       </div>
-      <AssignmentSubmissionForm isOpen={isModalOpen} onClose={handleCloseModal} />
+      <AssignmentSubmissionForm isOpen={isModalOpen} onClose={handleCloseModal} assignmentData={assignmentData} />
     </div>
   );
 };
