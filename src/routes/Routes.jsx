@@ -11,6 +11,7 @@ import UpdateAssignment from "../pages/UpdateAssignment/UpdateAssignment";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import UserProfile from "../pages/UserProfile/UserProfile";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 const Routes = createBrowserRouter([
     {
@@ -19,17 +20,17 @@ const Routes = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home></Home>,
-                loader: () => fetch("http://localhost:5000")
+                element: <Home></Home>
             },
             {
                 path: "/createAssignment",
-                element:<CreateAssignmentForm></CreateAssignmentForm>
+                element:<PrivateRoute>
+                    <CreateAssignmentForm></CreateAssignmentForm>
+                    </PrivateRoute>,
             },
             {
                 path: "/allAssignments",
-                element:<AllAssignments></AllAssignments>,
-                loader: () => fetch("http://localhost:5000/allAssignments")
+                element:<AllAssignments></AllAssignments>
             },
             {
                 path: "/details",

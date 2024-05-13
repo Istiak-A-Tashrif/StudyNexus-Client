@@ -2,24 +2,28 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
+import useAuth from "../../Hooks/useAuth";
+import { QueryClient, useMutation, useQueryClient } from "react-query";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const CreateAssignmentForm = () => {
-  const currentDate = new Date();
-
+  const { user } = useAuth();
   const initialFormState = {
     title: "",
     description: "",
     level: "beginner",
     marks: "",
+    name: `${user?.displayName}`,
+    email: `${user?.email}`,
     deadline: format(new Date(), "dd/MM/yyyy"),
-    name: "",
-    email: "",
     requirementDoc: "",
     thumbnail: "",
-    postDate: format(currentDate, 'dd/MM/yyyy'),
+    postDate: format(new Date(), "dd/MM/yyyy"),
   };
 
   const [formData, setFormData] = useState(initialFormState);
+  const [descriptionError, setDescriptionError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,10 +40,42 @@ const CreateAssignmentForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const { mutateAsync } = useMutation({
+    mutationFn: async ({ formData }) => {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL}/createAssignment`,
+        formData
+      );
+      return data;
+    },
+    onSuccess: () => {
+      Swal.fire({
+        title: "Success",
+        text: "The assignment has been added",
+        icon: "success",
+      });
+    },
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    // Handle form submission (e.g., send data to server)
+
+    // Validate description length
+    const descriptionLength = formData.description.trim().length;
+    if (descriptionLength < 100) {
+      setDescriptionError("Description must be at least 100 characters.");
+      return;
+    } else {
+      setDescriptionError("");
+    }
+
+    setFormData((prevData) => ({
+      ...prevData,
+      name: user?.displayName,
+      email: user?.email,
+    }));
+
+    await mutateAsync({ formData });
 
     // Clear the form
     setFormData(initialFormState);
@@ -81,6 +117,9 @@ const CreateAssignmentForm = () => {
           className="textarea textarea-bordered w-full bg-white"
           required
         />
+        {descriptionError && (
+          <p className="text-red-500 text-sm mt-2">{descriptionError}</p>
+        )}
       </div>
 
       {/* Level Field */}
@@ -132,12 +171,12 @@ const CreateAssignmentForm = () => {
         />
       </div>
 
-
-
       {/* Requirement Doc Link Field */}
       <div className="form-control">
         <label htmlFor="requirementDoc" className="label">
-          <span className="label-text text-gray-900">Requirement Document Link</span>
+          <span className="label-text text-gray-900">
+            Requirement Document Link
+          </span>
         </label>
         <input
           type="url"
@@ -168,7 +207,10 @@ const CreateAssignmentForm = () => {
 
       {/* Submit Button */}
       <div className="form-control mt-6">
-        <button type="submit" className="btn bg-[#AD88C6] hover:bg-[#7469B6] w-full text-gray-50">
+        <button
+          type="submit"
+          className="btn bg-[#AD88C6] hover:bg-[#7469B6] w-full text-gray-50"
+        >
           Create Assignment
         </button>
       </div>

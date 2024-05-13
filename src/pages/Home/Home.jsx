@@ -1,11 +1,33 @@
-import React from "react";
 import Banner from "./Banner";
 import Faq from "./Faq";
 import AssignmentCard from "./AssignmentCard";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+import axios from "axios";
+import Lottie from "lottie-react";
+import loading from "../../assets/loading.json"
 
 const Home = () => {
-  const assignments = useLoaderData();
+
+  const {data: assignments = [], isLoading, isError, error} = useQuery({
+    queryFn: () => getData(),
+    queryKey: ['home'],
+  })
+
+  const getData = async () => {
+    const {data} = await axios (`${import.meta.env.VITE_URL}`)
+    return data;
+  }
+  
+  if(isLoading){
+    return <div className="flex items-center justify-center">
+      <Lottie animationData={loading} loop={true} className="h-44 min-h-[calc(100vh-300px)]"></Lottie>
+    </div>
+  }
+
+  if (isError || error) {
+    console.error(error);
+  }
   return (
     <div>
       <Banner></Banner>

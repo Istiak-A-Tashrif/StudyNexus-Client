@@ -2,6 +2,10 @@ import React from 'react';
 import AssignmentCard from '../Home/AssignmentCard';
 import { FaChevronDown } from "react-icons/fa";
 import { useLoaderData } from 'react-router-dom';
+import { useQuery } from "react-query";
+import axios from "axios";
+import Lottie from "lottie-react";
+import loading from "../../assets/loading.json"
 
 const AllAssignments = () => {
     const handleDropdown = () => {
@@ -11,8 +15,27 @@ const AllAssignments = () => {
           document.getElementById("dropOrUp").setAttribute("open");
         }
       };
+
+      const {data: allAssignments = [], isLoading, isError, error} = useQuery({
+        queryFn: () => getData(),
+        queryKey: ['all'],
+      })
     
-      const allAssignments = useLoaderData();
+      const getData = async () => {
+        const {data} = await axios (`${import.meta.env.VITE_URL}/allAssignments`)
+        return data;
+      }
+      
+      if(isLoading){
+        return <div className="flex items-center justify-center">
+          <Lottie animationData={loading} loop={true} className="h-44 min-h-[calc(100vh-300px)]"></Lottie>
+        </div>
+      }
+    
+      if (isError || error) {
+        console.error(error);
+      }
+      
     return (
         <div className="">
             <div className="flex justify-center">

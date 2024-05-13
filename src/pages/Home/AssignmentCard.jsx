@@ -2,7 +2,6 @@ import { CgArrowsExpandLeft } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 
 const AssignmentCard = ({ data }) => {
-  console.log(data);
   const navigate = useNavigate();
   return (
     <div className="mt-10 p-1 rounded-lg border-2 border-transparent hover:border-[#7469B6] text-black relative group cursor-pointer" onClick={()=> navigate("/details")}>
