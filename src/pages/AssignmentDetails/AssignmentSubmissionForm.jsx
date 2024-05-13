@@ -40,7 +40,7 @@ const AssignmentSubmissionForm = ({ isOpen, onClose }) => {
       } flex items-center justify-center`}
     >
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
-      <div className="relative bg-[#FFE6E6] w-full max-w-md mx-auto rounded-lg shadow-lg">
+      <div className="relative max-h-[90vh] bg-[#FFE6E6] w-full max-w-md mx-auto rounded-lg shadow-lg overflow-y-auto">
         <div className="p-6">
           <h2 className="text-lg font-semibold mb-4">Submit Assignment</h2>
           <form onSubmit={handleSubmit}>

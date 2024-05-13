@@ -33,8 +33,8 @@ const Routes = createBrowserRouter([
                 element:<AllAssignments></AllAssignments>
             },
             {
-                path: "/details",
-                element:<AssignmentDetails></AssignmentDetails>
+                path: "/details/:id",
+                element:<PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>
             },
             {
                 path: "/added",
@@ -62,7 +62,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "/profile",
-                element:<UserProfile></UserProfile>
+                element:<PrivateRoute><UserProfile></UserProfile></PrivateRoute>
             },
         ]
     }

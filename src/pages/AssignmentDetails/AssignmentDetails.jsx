@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import AssignmentSubmissionForm from "./AssignmentSubmissionForm";
-import img1 from "../../assets/media.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const AssignmentDetails = () => {
   const navigate = useNavigate();
-  const assignmentData = {
-    title: "Sample Assignment",
-    description:
-      "Learn to build mobile apps using React Native framework. Suitable for beginners with JavaScript knowledge.",
-    level: "beginner",
-    requirementDoc: "https://example.com/requirement.pdf",
-    deadline: "2024-06-30",
-    thumbnail: img1,
-    creator: {
-      name: "John Doe",
-      email: "john.doe@example.com",
-    },
-  };
+  const { id } = useParams(); 
+  const {data: assignmentData = {}, isLoading, isError, error} = useQuery({
+    queryFn:()=> getData(),
+    queryKey: ["details"]
+  })
 
+  const getData = async () => {
+    const { data } = await axios.get(`${import.meta.env.VITE_URL}/details/${id}`);
+      return data;
+  }
+
+  console.log(assignmentData);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -50,19 +49,19 @@ const AssignmentDetails = () => {
         {/* Creator Name */}
         <div className="mb-2">
           <strong className="text-[#AD88C6]">Author:</strong>{" "}
-          {assignmentData.creator.name}
+          {assignmentData?.name}
         </div>
 
         {/* Creator Email */}
         <div className="mb-4">
           <strong className="text-[#AD88C6]">Email:</strong>{" "}
-          {assignmentData.creator.email}
+          {assignmentData?.email}
         </div>
 
         {/* Level */}
         <div className="mb-4">
-          <strong className="text-[#AD88C6]">Level:</strong>{" "}
-          {assignmentData.level}
+          <strong className="text-[#AD88C6] ">Level:</strong>{" "}
+          <span className="capitalize">{assignmentData.level}</span>
         </div>
 
         {/* Requirement Document Link */}
@@ -85,7 +84,7 @@ const AssignmentDetails = () => {
         </div>
 
         {/* View Assignment Button */}
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
         <button className="btn border-none bg-[#AD88C6] hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full" onClick={ () => navigate("/update")}>
           Update Assignment
         </button>

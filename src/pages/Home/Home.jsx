@@ -20,8 +20,8 @@ const Home = () => {
   }
   
   if(isLoading){
-    return <div className="flex items-center justify-center">
-      <Lottie animationData={loading} loop={true} className="h-44 min-h-[calc(100vh-300px)]"></Lottie>
+    return <div className="flex items-center justify-center  min-h-[calc(100vh-300px)]">
+      <Lottie animationData={loading} loop={true} className="h-44"></Lottie>
     </div>
   }
 

@@ -116,9 +116,9 @@ const Navbar = () => {
 
       {/* navbar end */}
       <div className="navbar-end">
-      <div className="avatar">
+      <div className="avatar" title={user?.displayName}>
   <div className="w-6 rounded-full">
-    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+    <img src={user?.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
   </div>
 </div>
         <div className="dropdown dropdown-end dropdown-bottom">

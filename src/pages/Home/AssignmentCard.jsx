@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const AssignmentCard = ({ data }) => {
   const navigate = useNavigate();
   return (
-    <div className="mt-10 p-1 rounded-lg border-2 border-transparent hover:border-[#7469B6] text-black relative group cursor-pointer" onClick={()=> navigate("/details")}>
+    <div className="mt-10 p-1 rounded-lg border-2 border-transparent hover:border-[#7469B6] text-black relative group cursor-pointer" onClick={()=> navigate(`/details/${data?._id}`)}>
       <div className="absolute right-10 bottom-[85%]">
         <button className="hidden group-hover:flex border-2 rounded-lg text-white h-8 w-8 items-center justify-center hover:bg-slate-400">
           <CgArrowsExpandLeft />
