@@ -41,19 +41,21 @@ const CreateAssignmentForm = () => {
   };
 
   const { mutateAsync } = useMutation({
-    mutationFn: async ({ formData }) => {
+    mutationFn: async ( formData ) => {
       const { data } = await axios.post(
         `${import.meta.env.VITE_URL}/createAssignment`,
         formData
       );
       return data;
     },
-    onSuccess: () => {
-      Swal.fire({
-        title: "Success",
-        text: "The assignment has been added",
-        icon: "success",
-      });
+    onSuccess: (data) => {
+      if (data.acknowledged) {
+        Swal.fire({
+          title: "Success",
+          text: "The assignment has been added",
+          icon: "success",
+        });
+      }
     },
   });
 
@@ -65,6 +67,10 @@ const CreateAssignmentForm = () => {
     if (descriptionLength < 100) {
       setDescriptionError("Description must be at least 100 characters.");
       return;
+    } 
+    if(descriptionLength > 200 ) {
+      setDescriptionError("Description must not exceed 100 characters.");
+      return
     } else {
       setDescriptionError("");
     }
@@ -75,7 +81,7 @@ const CreateAssignmentForm = () => {
       email: user?.email,
     }));
 
-    await mutateAsync({ formData });
+    await mutateAsync(formData);
 
     // Clear the form
     setFormData(initialFormState);

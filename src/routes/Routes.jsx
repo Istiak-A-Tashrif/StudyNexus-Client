@@ -49,8 +49,8 @@ const Routes = createBrowserRouter([
                 element:<CheckPage></CheckPage>,
             },
             {
-                path: "/update",
-                element:<UpdateAssignment></UpdateAssignment>
+                path: "/update/:id",
+                element:<PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>
             },
             {
                 path: "/login",
