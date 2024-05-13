@@ -4,13 +4,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format, parse } from "date-fns";
 import { useMutation, useQuery } from "react-query";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
 import Swal from "sweetalert2";
 
 const UpdateAssignment = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const getData = async () => {
     const { data } = await axios.get(`${import.meta.env.VITE_URL}/details/${id}`);
@@ -63,6 +64,7 @@ const UpdateAssignment = () => {
           icon: "success",
         });
       }
+      navigate(`/details/${id}`)
     },
   });
 
@@ -87,7 +89,6 @@ const UpdateAssignment = () => {
       ...formData,
       deadline: format(formData.deadline, "dd/MM/yyyy"),
     };
-    console.log("Form Data:", formattedData);
     await mutateAsync(formattedData);
   };
 

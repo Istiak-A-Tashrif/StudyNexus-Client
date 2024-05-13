@@ -38,15 +38,15 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "/added",
-                element:<AddedAssignments></AddedAssignments>
+                element:<PrivateRoute><AddedAssignments></AddedAssignments></PrivateRoute>
             },
             {
                 path: "/submitted",
-                element:<SubmittedAssignments></SubmittedAssignments>
+                element:<PrivateRoute><SubmittedAssignments></SubmittedAssignments></PrivateRoute>
             },
             {
                 path: "/check",
-                element:<CheckPage></CheckPage>,
+                element:<PrivateRoute><CheckPage></CheckPage></PrivateRoute>,
             },
             {
                 path: "/update/:id",

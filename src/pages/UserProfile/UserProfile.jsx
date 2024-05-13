@@ -52,7 +52,7 @@ const UserProfile = () => {
             />
             </div>
             <div className="px-6 py-4">
-                <h1 className="text-xl font-semibold pb-2">{user?.displayName}</h1>
+                <h1 className="text-xl font-semibold pb-2 capitalize">{user?.displayName}</h1>
                 <div className="flex items-center mt-4">
                     <svg
                         aria-label="email icon"

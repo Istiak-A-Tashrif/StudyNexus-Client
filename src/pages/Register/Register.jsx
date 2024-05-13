@@ -57,7 +57,7 @@ const Register = () => {
       .then(() => {
         notify();
         update(name, photo).then(() => {
-          setUser({ ...user, displayName: name, photoURL: photo });
+          setUser({ ...user, displayName: name, photoURL: photo, email: email });
         });
       })
       .catch((error) => {
