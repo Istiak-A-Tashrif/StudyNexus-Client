@@ -22,7 +22,7 @@ const SubmittedAssignments = () => {
   console.log(reviewed);
   const getReviewed = async () => {
     const { data } = await axios(
-      `${import.meta.env.VITE_URL}/submitted/reviewed`
+      `${import.meta.env.VITE_URL}/submitted/reviewed?email=${user?.email}`
     );
     return data;
   };
@@ -44,7 +44,7 @@ const SubmittedAssignments = () => {
     return data;
   };
 
-  if (isLoading) {
+  if (isLoading || reviewLoading) {
     return (
       <div className="flex items-center justify-center  min-h-[calc(100vh-300px)]">
         <Lottie animationData={loading} loop={true} className="h-44"></Lottie>
@@ -52,8 +52,14 @@ const SubmittedAssignments = () => {
     );
   }
 
-  if (isError || error) {
-    console.error(error);
+  if (isError || isReviewError) {
+    if (isError && isReviewError) {
+      return console.error(error, reviewError);
+    }
+    else if (isError) {
+      return console.error(error);
+    }
+    return console.error(reviewError)
   }
   
   if (reviewed.length === 0 && pending.length === 0) {

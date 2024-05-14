@@ -52,6 +52,11 @@ const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setFormData((prevData) => ({
+      ...prevData,
+      obtainedMarks: parseInt(formData.obtainedMarks)
+    }));
     console.log("Form Data:", formData);
     
     await mutateAsync(formData);

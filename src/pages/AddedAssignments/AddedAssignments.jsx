@@ -6,6 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
 import Swal from "sweetalert2";
+import TableRow from "./TableRow";
 
 const AddedAssignments = () => {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ const AddedAssignments = () => {
   }
 
   if (myAssignment.length === 0) {
-    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my-6">No assignments found.</div>;
+    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my6">No assignments found.</div>;
   }
 
   return (
@@ -92,26 +93,7 @@ const AddedAssignments = () => {
           </tr>
         </thead>
         <tbody>
-          {myAssignment.map((data) => (
-            <tr key={data._id} className="hover">
-              <td>
-                <button className="text-xl flex hover:scale-150" onClick={() => handleDelete(data._id)}>
-                  <TiDeleteOutline />
-                </button>
-              </td>
-              <td className="hover:text-blue-700 cursor-pointer"onClick={()=>navigate(`/details/${data._id}`)}>{data?.title}</td>
-              <td className="capitalize">{data?.level}</td>
-              <td>{data?.postDate}</td>
-              <td>
-                <button
-                  className="font-bold text-blue-700 underline"
-                  onClick={() => navigate(`/check/${data?._id}`)}
-                >
-                  Check: 1
-                </button>
-              </td>
-            </tr>
-          ))}
+          {myAssignment.map((data) => <TableRow key={data?._id} data={data}></TableRow>)}
         </tbody>
       </table>
     </div>
