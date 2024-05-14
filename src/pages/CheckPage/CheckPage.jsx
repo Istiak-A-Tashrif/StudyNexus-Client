@@ -37,7 +37,6 @@ const CheckPage = () => {
     return data;
   };
 
-  console.log(checkData);
   if (isLoading) {
     return (
       <div className="flex items-center justify-center  min-h-[calc(100vh-300px)]">
@@ -61,7 +60,6 @@ const CheckPage = () => {
           <div key={idx} className="bg-white p-4 rounded-lg shadow-md">
             <iframe
               src={data?.demoUrl}
-              frameborder="0"
               className="w-full h-40 rounded-lg mb-4"
             ></iframe>
             <div className="mb-2">
@@ -102,10 +100,10 @@ const CheckPage = () => {
             >
               Give feedback
             </button>
+            <FeedbackForm isOpen={isModalOpen} onClose={handleCloseModal} id={data?._id} />
           </div>
         ))}
       </div>
-      <FeedbackForm isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };

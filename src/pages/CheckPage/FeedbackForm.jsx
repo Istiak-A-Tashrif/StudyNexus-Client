@@ -1,6 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
+import Swal from "sweetalert2";
 
-const FeedbackForm = ({ isOpen, onClose }) => {
+const FeedbackForm = ({ isOpen, onClose, id }) => {
   const [formData, setFormData] = useState({
     marks: "",
     feedback: "",
@@ -14,10 +17,27 @@ const FeedbackForm = ({ isOpen, onClose }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const queryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: (updateData) => {
+      const {data} = axios.put(`${import.meta.env.VITE_URL}/updateMarks/${id}`, updateData)
+      return id
+    },
+    onSuccess: () => {
+        Swal.fire({
+          title: "Success",
+          text: "The assignment has been updated",
+          icon: "success",
+        });
+      
+      queryClient.invalidateQueries({ queryKey:['check']})
+    },
+  })
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
     // Handle form submission (e.g., send data to server)
+    await mutateAsync(formData);
 
     // Clear the form
     setFormData({
