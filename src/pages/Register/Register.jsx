@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
 import useAuth from "../../Hooks/useAuth";
 import { Slide, toast } from "react-toastify";
@@ -22,8 +22,22 @@ const Register = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [accepted, setAccepted] = useState(false);
 
-  const { createUser, update, notifyError, googleSignIn, user, setUser } =
-    useAuth();
+  const navigate = useNavigate();
+  const {
+    createUser,
+    update,
+    notifyError,
+    googleSignIn,
+    user,
+    setUser,
+    loader,
+  } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate, user]);
 
   const notify = () =>
     toast.success("User created successfully", {
@@ -47,7 +61,7 @@ const Register = () => {
     setAccepted(false);
     setModalOpen(false);
   };
-
+  
   const onSubmit = (data) => {
     const { email, password, name, photo } = data;
 
@@ -99,12 +113,16 @@ const Register = () => {
   const confirmPassword = watch("confirmPassword", "");
 
   const validatePassword = (value) => {
+    if (value.length < 6) {
+      return "Password must be at least 6 characters long";
+    }
     if (!/(?=.*[A-Za-z])(?=.*\d)/.test(value)) {
       return "Password must contain both letters and numbers";
     }
     return true;
   };
 
+  if (user || loader) return;
   return (
     <section className="py-6 flex justify-center items-center mt-4 animate__animated animate__fadeIn">
       <Helmet>

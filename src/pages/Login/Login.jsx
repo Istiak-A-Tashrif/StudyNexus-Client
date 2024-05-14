@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import login from "../../assets/login.json";
 import Lottie from "lottie-react";
@@ -14,11 +14,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { loginUser, googleSignIn, notifyError } = useAuth();
+  const { loginUser, googleSignIn, notifyError, user, loader } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate, user]);
 
   // handle social errors
   const handleSocialLogin = (socialProvider) => {
@@ -82,6 +88,8 @@ const Login = () => {
         notifyError();
       });
   };
+
+  if (user || loader) return;
 
   return (
     <div className="min-h-[60vh] flex justify-center items-center mt-4 animate__animated animate__fadeIn">

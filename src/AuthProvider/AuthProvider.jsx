@@ -71,9 +71,7 @@ const AuthProvider = ({ children }) => {
       const { data } = await axios(`${import.meta.env.VITE_URL}/logout`, {
         withCredentials: true,
       });
-
-      // Log response data
-      console.log(data);
+      
     } catch (error) {
       // Handle error
       console.error("Error logging out:", error);

@@ -57,7 +57,6 @@ const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
       ...prevData,
       obtainedMarks: parseInt(formData.obtainedMarks),
     }));
-    console.log("Form Data:", formData);
 
     await mutateAsync(formData);
 

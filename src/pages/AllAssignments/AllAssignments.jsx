@@ -68,7 +68,6 @@ const AllAssignments = () => {
   const handleSearch = e => {
     e.preventDefault();
     setSearch(e.target.search.value);
-    console.log(search);
   };
 
   if (isLoading) {
@@ -119,25 +118,25 @@ const AllAssignments = () => {
             onClick={handleDropdown}
           >
             <li
-              className="cursor-default hover:text-blue-600 mt-1"
+              className="cursor-pointer hover:text-blue-600 mt-1"
               onClick={() => setFilter('beginner')}
             >
               Beginner
             </li>
             <li
-              className="cursor-default hover:text-blue-600 mt-1"
+              className="cursor-pointer hover:text-blue-600 mt-1"
               onClick={() => setFilter('intermediate')}
             >
               Intermediate
             </li>
             <li
-              className="cursor-default hover:text-blue-600 mt-1"
+              className="cursor-pointer hover:text-blue-600 mt-1"
               onClick={() => setFilter("expert")}
             >
               Expert
             </li>
             <li
-              className="cursor-default hover:text-blue-600 mt-1"
+              className="cursor-pointer hover:text-blue-600 mt-1"
               onClick={() => setFilter('')}
             >
               None
