@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import AssignmentCard from "../Home/AssignmentCard";
 import { FaChevronDown, FaSearchengin } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
-import { set } from "date-fns";
+import 'animate.css/animate.min.css';
+import { Helmet } from "react-helmet-async";
+
 
 const AllAssignments = () => {
   const [count,setCount] = useState(0);
@@ -83,7 +84,10 @@ const AllAssignments = () => {
   }
 
   return (
-    <div className="">
+    <div className="animate__animated animate__fadeIn">
+      <Helmet>
+        <title>StudyNexus | All</title>
+      </Helmet>
       <div className="flex items-center justify-center my-4">
       <div className="">
       <div className="relative">

@@ -7,6 +7,9 @@ import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import 'animate.css/animate.min.css';
+import { Helmet } from "react-helmet-async";
+
 
 const CheckPage = () => {
   const { id } = useParams();
@@ -56,7 +59,10 @@ const CheckPage = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 animate__animated animate__fadeIn">
+      <Helmet>
+        <title>StudyNexus | Check</title>
+      </Helmet>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {checkData.map((data, idx) => (
           <div key={idx} className="bg-white p-4 rounded-lg shadow-md">

@@ -14,58 +14,84 @@ import UserProfile from "../pages/UserProfile/UserProfile";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 const Routes = createBrowserRouter([
-    {
-        path: "/",
-        element: <Main></Main>,
-        children: [
-            {
-                index: true,
-                element: <Home></Home>
-            },
-            {
-                path: "/createAssignment",
-                element:<PrivateRoute>
-                    <CreateAssignmentForm></CreateAssignmentForm>
-                    </PrivateRoute>,
-            },
-            {
-                path: "/allAssignments",
-                element:<AllAssignments></AllAssignments>
-            },
-            {
-                path: "/details/:id",
-                element:<PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>
-            },
-            {
-                path: "/added",
-                element:<PrivateRoute><AddedAssignments></AddedAssignments></PrivateRoute>
-            },
-            {
-                path: "/submitted",
-                element:<PrivateRoute><SubmittedAssignments></SubmittedAssignments></PrivateRoute>
-            },
-            {
-                path: "/check/:id",
-                element:<PrivateRoute><CheckPage></CheckPage></PrivateRoute>,
-            },
-            {
-                path: "/update/:id",
-                element:<PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>
-            },
-            {
-                path: "/login",
-                element:<Login></Login>
-            },
-            {
-                path: "/register",
-                element:<Register></Register>
-            },
-            {
-                path: "/profile",
-                element:<PrivateRoute><UserProfile></UserProfile></PrivateRoute>
-            },
-        ]
-    }
-])
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        index: true,
+        element: <Home></Home>,
+      },
+      {
+        path: "/createAssignment",
+        element: (
+          <PrivateRoute>
+            <CreateAssignmentForm></CreateAssignmentForm>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/allAssignments",
+        element: <AllAssignments></AllAssignments>,
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <AssignmentDetails></AssignmentDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/added",
+        element: (
+          <PrivateRoute>
+            <AddedAssignments></AddedAssignments>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/submitted",
+        element: (
+          <PrivateRoute>
+            <SubmittedAssignments></SubmittedAssignments>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/check/:id",
+        element: (
+          <PrivateRoute>
+            <CheckPage></CheckPage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateAssignment></UpdateAssignment>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <UserProfile></UserProfile>
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 export default Routes;

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { TiDeleteOutline } from "react-icons/ti";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
@@ -8,6 +7,8 @@ import loading from "../../assets/loading.json";
 import Swal from "sweetalert2";
 import TableRow from "./TableRow";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import 'animate.css/animate.min.css';
+import { Helmet } from "react-helmet-async";
 
 const AddedAssignments = () => {
   const navigate = useNavigate();
@@ -82,7 +83,10 @@ const AddedAssignments = () => {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto animate__animated animate__fadeIn">
+      <Helmet>
+        <title>StudyNexus | Added</title>
+      </Helmet>
       <table className="table">
         {/* head */}
         <thead>

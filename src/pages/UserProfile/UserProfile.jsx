@@ -2,6 +2,8 @@ import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { Slide, toast } from 'react-toastify';
+import 'animate.css/animate.min.css';
+import { Helmet } from 'react-helmet-async';
 
 const UserProfile = () => {
     const { user, setUser, update, notifyError } = useAuth();
@@ -42,7 +44,10 @@ const UserProfile = () => {
       });
   };
     return (
-        <div className="min-h-[60vh] flex justify-center items-center">
+        <div className="min-h-[60vh] flex justify-center items-center animate__animated animate__fadeIn">
+          <Helmet>
+            <title>StudyNexus | Profile</title>
+          </Helmet>
            <div className="w-full max-w-sm overflow-hidden rounded-lg shadow-lg bg-[#FFE6E6] text-gray-900 mx-auto">
             <div className="p-3 bg-gray-100">
             <img

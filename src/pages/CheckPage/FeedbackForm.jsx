@@ -20,20 +20,23 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: (updateData) => {
-      const {data} = axios.put(`${import.meta.env.VITE_URL}/updateMarks/${id}`, updateData)
-      return id
+      const { data } = axios.put(
+        `${import.meta.env.VITE_URL}/updateMarks/${id}`,
+        updateData
+      );
+      return id;
     },
     onSuccess: () => {
-        Swal.fire({
-          title: "Success",
-          text: "The assignment has been updated",
-          icon: "success",
-        });
-      
-      queryClient.invalidateQueries({ queryKey:['check']})
+      Swal.fire({
+        title: "Success",
+        text: "The assignment has been updated",
+        icon: "success",
+      });
+
+      queryClient.invalidateQueries({ queryKey: ["check"] });
     },
-  })
-  
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send data to server)
@@ -58,7 +61,9 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
       <div className="relative bg-[#FFE6E6] text-gray-900 w-full max-w-md mx-auto rounded-lg shadow-lg">
         <div className="p-6">
-          <h2 className="text-lg font-semibold mb-4">Submit Marks and Feedback</h2>
+          <h2 className="text-lg font-semibold mb-4">
+            Submit Marks and Feedback
+          </h2>
           <form onSubmit={handleSubmit}>
             <div className="form-control">
               <label htmlFor="marks" className="label">
@@ -97,7 +102,10 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
               >
                 Cancel
               </button>
-              <button type="submit" className="btn bg-[#7469B6] text-gray-50 border-none">
+              <button
+                type="submit"
+                className="btn bg-[#7469B6] text-gray-50 border-none"
+              >
                 Submit
               </button>
             </div>

@@ -6,6 +6,9 @@ import axios from "axios";
 import Lottie from "lottie-react";
 Lottie
 import loading from "../../assets/loading.json"
+import 'animate.css/animate.min.css';
+import { Helmet } from "react-helmet-async";
+
 
 const AssignmentDetails = () => {
   const navigate = useNavigate();
@@ -40,7 +43,10 @@ const AssignmentDetails = () => {
     console.error(error);
   }
   return (
-    <div className="container mx-auto text-gray-900 mt-10">
+    <div className="container mx-auto text-gray-900 mt-10 animate__animated animate__fadeIn">
+      <Helmet>
+        <title>StudyNexus | Details</title>
+      </Helmet>
       <div className="max-w-lg mx-auto p-6 bg-[#FFE6E6] rounded-lg shadow-md">
         {/* Assignment Thumbnail */}
         <img

@@ -29,12 +29,7 @@ const AssignmentCard = ({ data }) => {
         </div>
 
         <div className="flex flex-col space-y-1">
-          <a
-            className="text-[14px] font-semibold"
-          >
-            {data?.name}
-          
-          </a>
+          <a className="text-[14px] font-semibold">{data?.name}</a>
           <span className="text-xs font-medium">
             Deadline: {data?.deadline}
           </span>

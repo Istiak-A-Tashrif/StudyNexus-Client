@@ -16,31 +16,31 @@ const Navbar = () => {
       <li>
         <Link to={"/allAssignments"}>All Assignments</Link>
       </li>
-      {
-        user && <li>
-        <details>
-          <summary>My Assignments</summary>
-          <ul className="p-2 z-20">
-            <li>
-              <Link to={"/added"}>Added</Link>
-            </li>
-            <li>
-              <Link to={"/submitted"}>Submitted</Link>
-            </li>
-          </ul>
-        </details>
-      </li>
-      }
-      {
-        user && <li>
-        <Link to={"/createAssignment"}>Create Assignment</Link>
-      </li>
-      }
-       {
-        !user && <li>
-        <Link to={"/register"}>Register</Link>
-      </li>
-      }
+      {user && (
+        <li>
+          <details>
+            <summary>My Assignments</summary>
+            <ul className="p-2 z-20">
+              <li>
+                <Link to={"/added"}>Added</Link>
+              </li>
+              <li>
+                <Link to={"/submitted"}>Submitted</Link>
+              </li>
+            </ul>
+          </details>
+        </li>
+      )}
+      {user && (
+        <li>
+          <Link to={"/createAssignment"}>Create Assignment</Link>
+        </li>
+      )}
+      {!user && (
+        <li>
+          <Link to={"/register"}>Register</Link>
+        </li>
+      )}
     </>
   );
 
@@ -112,9 +112,9 @@ const Navbar = () => {
             {navLink}
           </ul>
         </div>
-        <h1 className="text-2xl font-extrabold font-rowdies text-[#7469B6]">
+        <Link><h1 className="text-2xl font-extrabold font-rowdies text-[#7469B6]">
           Study<span className="text-[#AD88C6]">Nexus</span>
-        </h1>
+        </h1></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLink}</ul>
@@ -122,14 +122,16 @@ const Navbar = () => {
 
       {/* navbar end */}
       <div className="navbar-end">
-      <div className="avatar" title={user?.displayName}>
-  <div className="w-6 rounded-full">
-    <img src={
-                    user?.photoURL ||
-                    "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0="
-                  } />
-  </div>
-</div>
+        <div className="avatar" title={user?.displayName}>
+          <div className="w-6 rounded-full">
+            <img
+              src={
+                user?.photoURL ||
+                "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0="
+              }
+            />
+          </div>
+        </div>
         <div className="dropdown dropdown-end dropdown-bottom">
           <div tabIndex={0} role="button" className="text-xl">
             <BsThreeDotsVertical />
@@ -180,8 +182,26 @@ const Navbar = () => {
                 </div>
               </details>
             </li>
-            {user && <li className="cursor-pointer p-2" onClick={()=>navigate("/profile")}>Profile</li>}
-           {user? <li className="p-2 cursor-pointer" onClick={userSignOut}>Log out</li> : <li className="p-2 cursor-pointer" onClick={() =>navigate("/login")}>Log in</li>}
+            {user && (
+              <li
+                className="cursor-pointer p-2"
+                onClick={() => navigate("/profile")}
+              >
+                Profile
+              </li>
+            )}
+            {user ? (
+              <li className="p-2 cursor-pointer" onClick={userSignOut}>
+                Log out
+              </li>
+            ) : (
+              <li
+                className="p-2 cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Log in
+              </li>
+            )}
           </ul>
         </div>
       </div>

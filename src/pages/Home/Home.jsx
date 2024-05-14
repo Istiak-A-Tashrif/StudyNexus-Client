@@ -6,6 +6,8 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json"
+import 'animate.css/animate.min.css';
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
 
@@ -29,7 +31,10 @@ const Home = () => {
     console.error(error);
   }
   return (
-    <div>
+    <div className="animate__animated animate__fadeIn">
+      <Helmet>
+        <title>StudyNexus | Home</title>
+      </Helmet>
       <Banner></Banner>
       <div className="text-center flex flex-col justify-center items-center">
         <h1 className="text-2xl md:text-3xl font-bold mt-14">Featured Assignments</h1>

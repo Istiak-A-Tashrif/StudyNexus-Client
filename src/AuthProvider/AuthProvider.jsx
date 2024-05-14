@@ -1,28 +1,28 @@
 import { createContext, useEffect, useState } from "react";
 import {
-    GithubAuthProvider,
-    GoogleAuthProvider,
-    createUserWithEmailAndPassword,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    signOut,
-    updateProfile,
-  } from "firebase/auth";
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import auth from "../Firebase/firebase.config";
 import { Bounce, toast } from "react-toastify";
 import axios from "axios";
 
-export const firebaseContext = createContext(null)
+export const firebaseContext = createContext(null);
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
 
   // providers
   const googleProvider = new GoogleAuthProvider();
 
-    // create user
+  // create user
   const createUser = (email, password) => {
     setLoader(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -52,7 +52,7 @@ const AuthProvider = ({children}) => {
   const userSignOut = async () => {
     // Clear user state
     setUser(null);
-  
+
     // Notify user about logout
     toast.success("Logged out", {
       position: "top-right",
@@ -65,13 +65,13 @@ const AuthProvider = ({children}) => {
       theme: "colored",
       transition: Bounce,
     });
-  
+
     try {
       // Send logout request to server
       const { data } = await axios(`${import.meta.env.VITE_URL}/logout`, {
         withCredentials: true,
       });
-  
+
       // Log response data
       console.log(data);
     } catch (error) {
@@ -79,7 +79,7 @@ const AuthProvider = ({children}) => {
       console.error("Error logging out:", error);
       // You can notify the user about the error if needed
     }
-  
+
     // Perform Firebase sign-out
     return signOut(auth);
   };
@@ -88,12 +88,12 @@ const AuthProvider = ({children}) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoader(false);
-    }) 
-    return () => unsubscribe()
-  },[])
+    });
+    return () => unsubscribe();
+  }, []);
 
   const notifyError = (message = "Something went wrong. Please  try again") => {
-   return toast.error(message, {
+    return toast.error(message, {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -107,22 +107,22 @@ const AuthProvider = ({children}) => {
   };
 
   const values = {
-        createUser,
-        update,
-        notifyError,
-        googleSignIn,
-        user,
-        setUser,
-        loader,
-        loginUser,
-        userSignOut,
-    }
+    createUser,
+    update,
+    notifyError,
+    googleSignIn,
+    user,
+    setUser,
+    loader,
+    loginUser,
+    userSignOut,
+  };
 
-    return (
-        <firebaseContext.Provider value={values}>
-            {children}
-        </firebaseContext.Provider>
-    );
+  return (
+    <firebaseContext.Provider value={values}>
+      {children}
+    </firebaseContext.Provider>
+  );
 };
 
 export default AuthProvider;

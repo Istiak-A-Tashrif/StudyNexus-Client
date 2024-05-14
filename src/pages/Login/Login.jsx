@@ -7,6 +7,8 @@ import useAuth from "../../Hooks/useAuth";
 import { Slide, toast } from "react-toastify";
 import axios from "axios";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import "animate.css/animate.min.css";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,25 +23,25 @@ const Login = () => {
   // handle social errors
   const handleSocialLogin = (socialProvider) => {
     socialProvider()
-    .then(async (res) => {
-      if (res.user) {
-        const { data } = await axiosSecure.post('/jwt', {
-          email: res.user.email
-        });
-        toast.success("Logged in", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Slide,
-        });
-        navigate(location?.state || "/");
-      }
-    })    
+      .then(async (res) => {
+        if (res.user) {
+          const { data } = await axiosSecure.post("/jwt", {
+            email: res.user.email,
+          });
+          toast.success("Logged in", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Slide,
+          });
+          navigate(location?.state || "/");
+        }
+      })
       .catch((error) => {
         console.error(error.message);
         notifyError();
@@ -56,11 +58,11 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     loginUser(email, password)
       .then(async (res) => {
-        const { data } = await axiosSecure.post('/jwt', {
-          email: res.user.email
+        const { data } = await axiosSecure.post("/jwt", {
+          email: res.user.email,
         });
         toast.success("Logged in", {
           position: "top-right",
@@ -80,10 +82,12 @@ const Login = () => {
         notifyError();
       });
   };
-  
 
   return (
-    <div className="min-h-[60vh] flex justify-center items-center mt-4">
+    <div className="min-h-[60vh] flex justify-center items-center mt-4 animate__animated animate__fadeIn">
+      <Helmet>
+        <title>StudyNexus | Login</title>
+      </Helmet>
       <div className="flex items-center bg-[#FFE6E6] rounded-md justify-center flex-col md:flex-row">
         <div>
           <Lottie animationData={login} loop={true} />;

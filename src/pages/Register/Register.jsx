@@ -6,10 +6,12 @@ import TermsAndConditionsModal from "./TermsAndConditionsModal";
 import useAuth from "../../Hooks/useAuth";
 import { Slide, toast } from "react-toastify";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import "animate.css/animate.min.css";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const axiosSecure = useAxiosSecure();
-    const {
+  const {
     register,
     handleSubmit,
     formState: { errors },
@@ -20,14 +22,8 @@ const Register = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [accepted, setAccepted] = useState(false);
 
-  const {
-    createUser,
-    update,
-    notifyError,
-    googleSignIn,
-    user,
-    setUser,
-  } = useAuth();
+  const { createUser, update, notifyError, googleSignIn, user, setUser } =
+    useAuth();
 
   const notify = () =>
     toast.success("User created successfully", {
@@ -54,15 +50,21 @@ const Register = () => {
 
   const onSubmit = (data) => {
     const { email, password, name, photo } = data;
-  
+
     createUser(email, password)
-      .then(async (res) => { // Capture the response here
-        const { data } = await axiosSecure.post('/jwt', {
-          email: res.user.email
+      .then(async (res) => {
+        // Capture the response here
+        const { data } = await axiosSecure.post("/jwt", {
+          email: res.user.email,
         });
         notify();
         update(name, photo).then(() => {
-          setUser({ ...user, displayName: name, photoURL: photo, email: email });
+          setUser({
+            ...user,
+            displayName: name,
+            photoURL: photo,
+            email: email,
+          });
         });
       })
       .catch((error) => {
@@ -70,13 +72,12 @@ const Register = () => {
         notifyError();
       });
   };
-  
 
   const handleSocialLogin = (socialProvider) => {
     socialProvider()
       .then(async (res) => {
-        const { data } = await axiosSecure.post('/jwt', {
-          email: res.user.email
+        const { data } = await axiosSecure.post("/jwt", {
+          email: res.user.email,
         });
         notify();
       })
@@ -105,9 +106,16 @@ const Register = () => {
   };
 
   return (
-    <section className=" min-h-screen flex justify-center items-center mt-4">
-            <TermsAndConditionsModal isOpen={modalOpen} onDecline={handleDecliance} onAccept={handleAcceptance} ></TermsAndConditionsModal>
-        
+    <section className="py-6 flex justify-center items-center mt-4 animate__animated animate__fadeIn">
+      <Helmet>
+        <title>StudyNexus | Register</title>
+      </Helmet>
+      <TermsAndConditionsModal
+        isOpen={modalOpen}
+        onDecline={handleDecliance}
+        onAccept={handleAcceptance}
+      ></TermsAndConditionsModal>
+
       <div className="max-w-md w-full bg-[#FFE6E6] rounded-lg shadow p-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">
           Create an account
@@ -253,14 +261,14 @@ const Register = () => {
                 I accept the{" "}
               </label>
               <span
-                  onClick={() => setModalOpen(true)}
-                  className="font-medium text-primary-600 hover:underline"
-                >
-                  Terms and Conditions
-                </span>
+                onClick={() => setModalOpen(true)}
+                className="font-medium text-primary-600 hover:underline"
+              >
+                Terms and Conditions
+              </span>
             </div>
           </div>
-          {(errors.terms && !accepted) && (
+          {errors.terms && !accepted && (
             <span className="text-sm text-red-500">
               Please accept the Terms and Conditions
             </span>
@@ -279,9 +287,11 @@ const Register = () => {
             <div className="flex-1 h-px sm:w-16 bg-gray-300"></div>
           </div>
           <div className="flex justify-center space-x-4">
-            <button type="button"
+            <button
+              type="button"
               aria-label="Log in with Google"
-              className="btn btn-ghost flex items-center gap-2 text-gray-900" onClick={() => handleSocialLogin(googleSignIn)}
+              className="btn btn-ghost flex items-center gap-2 text-gray-900"
+              onClick={() => handleSocialLogin(googleSignIn)}
             >
               <FaGoogle />
               <span className="font-bold">Google</span>

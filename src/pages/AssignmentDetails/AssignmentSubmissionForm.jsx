@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 
 const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [formData, setFormData] = useState({
     title: assignmentData?.title,
@@ -31,7 +31,7 @@ const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
   };
 
   const { mutateAsync } = useMutation({
-    mutationFn: async ( formData ) => {
+    mutationFn: async (formData) => {
       const { data } = await axios.post(
         `${import.meta.env.VITE_URL}/submit`,
         formData
@@ -46,7 +46,7 @@ const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
           icon: "success",
         });
       }
-      navigate("/submitted")
+      navigate("/submitted");
     },
   });
 
@@ -55,10 +55,10 @@ const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
 
     setFormData((prevData) => ({
       ...prevData,
-      obtainedMarks: parseInt(formData.obtainedMarks)
+      obtainedMarks: parseInt(formData.obtainedMarks),
     }));
     console.log("Form Data:", formData);
-    
+
     await mutateAsync(formData);
 
     // Clear the form
@@ -66,9 +66,9 @@ const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
       ...prevData,
       githubRepo: "",
       demoUrl: "",
-      note: "", 
+      note: "",
     }));
-    
+
     // Close the modal
     onClose();
   };
@@ -145,7 +145,10 @@ const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
               >
                 Cancel
               </button>
-              <button type="submit" className="btn bg-[#7469B6] text-gray-50 border-none">
+              <button
+                type="submit"
+                className="btn bg-[#7469B6] text-gray-50 border-none"
+              >
                 Submit
               </button>
             </div>

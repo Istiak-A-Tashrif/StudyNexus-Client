@@ -18,7 +18,7 @@ const Faq = () => {
         </div>
         <div className="md:w-2/3">
           <div className="collapse collapse-arrow">
-            <input type="radio" name="my-accordion-2" defaultChecked/>
+            <input type="radio" name="my-accordion-2" defaultChecked />
             <div className="collapse-title text-xl font-medium">
               What is StudyNexus?
             </div>
@@ -40,8 +40,8 @@ const Faq = () => {
               <p>
                 To create a study assignment, simply navigate to the "Create
                 Assignment" page and fill out the required fields, including the
-                assignment title, description, marks, thumbnail image URL,
-                level level, and due date.
+                assignment title, description, marks, thumbnail image URL, level
+                level, and due date.
               </p>
             </div>
             <div className="collapse collapse-arrow ">
@@ -60,22 +60,28 @@ const Faq = () => {
             <div className="collapse collapse-arrow ">
               <input type="radio" name="my-accordion-2" />
               <div className="collapse-title text-xl font-medium">
-              How can I submit an assignment?
+                How can I submit an assignment?
               </div>
               <div className="collapse-content">
                 <p>
-                To submit an assignment, click on the "Take Assignment" button on the assignment details page. You will be prompted to provide a PDF/doc link and any additional notes before submitting.
+                  To submit an assignment, click on the "Take Assignment" button
+                  on the assignment details page. You will be prompted to
+                  provide a PDF/doc link and any additional notes before
+                  submitting.
                 </p>
               </div>
             </div>
             <div className="collapse collapse-arrow ">
               <input type="radio" name="my-accordion-2" />
               <div className="collapse-title text-xl font-medium">
-              How are pending assignments handled
+                How are pending assignments handled
               </div>
               <div className="collapse-content">
                 <p>
-                Pending assignments are displayed on the "Pending Assignments" page, where users can view all assignments that have not yet been marked. Users can grade pending assignments and provide feedback to their peers.
+                  Pending assignments are displayed on the "Pending Assignments"
+                  page, where users can view all assignments that have not yet
+                  been marked. Users can grade pending assignments and provide
+                  feedback to their peers.
                 </p>
               </div>
             </div>

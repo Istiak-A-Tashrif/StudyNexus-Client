@@ -7,9 +7,11 @@ import axios from "axios";
 import loading from "../../assets/loading.json";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import "animate.css/animate.min.css";
+import { Helmet } from "react-helmet-async";
 
 const SubmittedAssignments = () => {
-  const { user } =  useAuth();
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const {
     data: reviewed = [],
@@ -55,18 +57,24 @@ const SubmittedAssignments = () => {
   if (isError || isReviewError) {
     if (isError && isReviewError) {
       return console.error(error, reviewError);
-    }
-    else if (isError) {
+    } else if (isError) {
       return console.error(error);
     }
-    return console.error(reviewError)
+    return console.error(reviewError);
   }
-  
+
   if (reviewed.length === 0 && pending.length === 0) {
-    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my-6">You haven't submiited any assignment.</div>;
+    return (
+      <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my-6">
+        You haven't submiited any assignment.
+      </div>
+    );
   }
   return (
-    <div className="-mt-4">
+    <div className="-mt-4 animate__animated animate__fadeIn">
+      <Helmet>
+        <title>StudyNexus | Submitted</title>
+      </Helmet>
       <div className="text-center">
         <Lottie animationData={congrats} loop={true} className="h-48" />
         <h1 className="text-2xl font-semibold">Congratulations !!!</h1>
