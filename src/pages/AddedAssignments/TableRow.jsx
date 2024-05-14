@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const TableRow = ({data}) => {
+const TableRow = ({data, handleDelete}) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [count, setCount] = useState(null)

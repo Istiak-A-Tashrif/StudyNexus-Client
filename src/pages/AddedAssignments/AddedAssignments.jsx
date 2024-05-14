@@ -93,7 +93,7 @@ const AddedAssignments = () => {
           </tr>
         </thead>
         <tbody>
-          {myAssignment.map((data) => <TableRow key={data?._id} data={data}></TableRow>)}
+          {myAssignment.map((data) => <TableRow key={data?._id} data={data} handleDelete={handleDelete} ></TableRow>)}
         </tbody>
       </table>
     </div>

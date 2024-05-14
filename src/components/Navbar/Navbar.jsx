@@ -16,7 +16,8 @@ const Navbar = () => {
       <li>
         <Link to={"/allAssignments"}>All Assignments</Link>
       </li>
-      <li>
+      {
+        user && <li>
         <details>
           <summary>My Assignments</summary>
           <ul className="p-2 z-20">
@@ -29,12 +30,17 @@ const Navbar = () => {
           </ul>
         </details>
       </li>
-      <li>
+      }
+      {
+        user && <li>
         <Link to={"/createAssignment"}>Create Assignment</Link>
       </li>
-      <li>
+      }
+       {
+        !user && <li>
         <Link to={"/register"}>Register</Link>
       </li>
+      }
     </>
   );
 
@@ -171,7 +177,7 @@ const Navbar = () => {
                 </div>
               </details>
             </li>
-            <li className="cursor-pointer p-2" onClick={()=>navigate("/profile")}>Profile</li>
+            {user && <li className="cursor-pointer p-2" onClick={()=>navigate("/profile")}>Profile</li>}
            {user? <li className="p-2 cursor-pointer" onClick={userSignOut}>Log out</li> : <li className="p-2 cursor-pointer" onClick={() =>navigate("/login")}>Log in</li>}
           </ul>
         </div>
