@@ -16,8 +16,10 @@ const AssignmentSubmissionForm = ({ isOpen, onClose, assignmentData }) => {
     obtainedMarks: 0,
     fullMarks: parseInt(assignmentData?.marks),
     userName: user?.displayName,
+    userEmail: user?.email,
     id: assignmentData?._id,
     level: assignmentData?.level,
+    author: assignmentData?.email,
   });
 
   const handleChange = (e) => {

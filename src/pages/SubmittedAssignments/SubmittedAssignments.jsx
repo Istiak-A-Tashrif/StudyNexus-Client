@@ -4,8 +4,11 @@ import Lottie from "lottie-react";
 import congrats from "../../assets/congrats.json";
 import { useQuery } from "react-query";
 import axios from "axios";
+import loading from "../../assets/loading.json";
+import useAuth from "../../Hooks/useAuth";
 
 const SubmittedAssignments = () => {
+  const { user } =  useAuth();
   const {
     data: reviewed = [],
     isLoading: reviewLoading,
@@ -36,10 +39,26 @@ const SubmittedAssignments = () => {
   console.log(pending);
   const getPending = async () => {
     const { data } = await axios(
-      `${import.meta.env.VITE_URL}/submitted/pending`
+      `${import.meta.env.VITE_URL}/submitted/pending?email=${user?.email}`
     );
     return data;
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center  min-h-[calc(100vh-300px)]">
+        <Lottie animationData={loading} loop={true} className="h-44"></Lottie>
+      </div>
+    );
+  }
+
+  if (isError || error) {
+    console.error(error);
+  }
+  
+  if (reviewed.length === 0 && pending.length === 0) {
+    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my-6">You haven't submiited any assignment.</div>;
+  }
   return (
     <div className="-mt-4">
       <div className="text-center">

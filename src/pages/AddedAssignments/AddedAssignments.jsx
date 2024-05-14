@@ -75,7 +75,7 @@ const AddedAssignments = () => {
   }
 
   if (myAssignment.length === 0) {
-    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl">No assignments found.</div>;
+    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my-6">No assignments found.</div>;
   }
 
   return (
@@ -105,7 +105,7 @@ const AddedAssignments = () => {
               <td>
                 <button
                   className="font-bold text-blue-700 underline"
-                  onClick={() => navigate("/check")}
+                  onClick={() => navigate(`/check/${data?._id}`)}
                 >
                   Check: 1
                 </button>

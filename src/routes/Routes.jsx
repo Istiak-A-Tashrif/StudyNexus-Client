@@ -45,7 +45,7 @@ const Routes = createBrowserRouter([
                 element:<PrivateRoute><SubmittedAssignments></SubmittedAssignments></PrivateRoute>
             },
             {
-                path: "/check",
+                path: "/check/:id",
                 element:<PrivateRoute><CheckPage></CheckPage></PrivateRoute>,
             },
             {

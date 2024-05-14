@@ -6,9 +6,11 @@ import useAuth from "../../Hooks/useAuth";
 import { QueryClient, useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CreateAssignmentForm = () => {
   const { user } = useAuth();
+  const navigate =useNavigate();
   const initialFormState = {
     title: "",
     description: "",
@@ -56,6 +58,7 @@ const CreateAssignmentForm = () => {
           icon: "success",
         });
       }
+      navigate("/added");
     },
   });
 
