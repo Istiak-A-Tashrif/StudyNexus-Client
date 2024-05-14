@@ -124,7 +124,10 @@ const Navbar = () => {
       <div className="navbar-end">
       <div className="avatar" title={user?.displayName}>
   <div className="w-6 rounded-full">
-    <img src={user?.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
+    <img src={
+                    user?.photoURL ||
+                    "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0="
+                  } />
   </div>
 </div>
         <div className="dropdown dropdown-end dropdown-bottom">

@@ -14,7 +14,6 @@ const TableRow = ({data, handleDelete}) => {
         .then(res=>res.json())
         .then(data=>setCount(data))
     },[])
-    console.log(count);
     return (
         <tr className="hover">
               <td>

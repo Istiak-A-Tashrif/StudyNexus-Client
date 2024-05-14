@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AssignmentCard from "../Home/AssignmentCard";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaSearchengin } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
@@ -12,6 +12,8 @@ const AllAssignments = () => {
   const [count,setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
+  const [search, setSearch] = useState('');
+  
   const handleDropdown = () => {
     if (document.getElementById("dropOrUp").hasAttribute("open")) {
       document.getElementById("dropOrUp").removeAttribute("open");
@@ -27,19 +29,25 @@ const AllAssignments = () => {
     error,
   } = useQuery({
     queryFn: () => getData(),
-    queryKey: ["all", currentPage, filter],
+    queryKey: ["all", currentPage, filter, search],
   });
   
   const getData = async () => {
-    const { data } = await axios(`${import.meta.env.VITE_URL}/allAssignments?page=${currentPage}&size=${itemsPerPage}&filter=${filter}`);
+    const { data } = await axios(`${import.meta.env.VITE_URL}/allAssignments?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&search=${search}`);
     return data;
   };
 
-  useEffect(()=>{
-    fetch(`${import.meta.env.VITE_URL}/assignmentsCount`)
-    .then(res=>res.json())
-    .then(data => setCount(data.count))
-  },[allAssignments])
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_URL}/assignmentsCount?filter=${filter}&search=${search}`)
+        .then(res => res.json())
+        .then(data => {
+            setCount(data.count);
+        })
+        .catch(error => {
+            console.error("Error fetching count:", error);
+        });
+}, [allAssignments, filter, search]);
+
   
   const itemsPerPage = 6
   const pages = [...Array(Math.ceil(count/itemsPerPage)).keys()].map(data => data+1);
@@ -54,6 +62,14 @@ const AllAssignments = () => {
       setCurrentPage(currentPage-1)
     }
   }
+  // search query
+
+  const handleSearch = e => {
+    e.preventDefault();
+    setSearch(e.target.search.value);
+    console.log(search);
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center  min-h-[calc(100vh-300px)]">
@@ -68,8 +84,29 @@ const AllAssignments = () => {
 
   return (
     <div className="">
-      <div className="flex justify-center">
-        <details id="dropOrUp" className="dropdown my-4 mt-6">
+      <div className="flex items-center justify-center my-4">
+      <div className="">
+      <div className="relative">
+      <form onSubmit={handleSearch}>
+      <input
+        type="text"
+        name="search"
+        placeholder="Search..."
+        className="py-2 pl-10 pr-4 block w-full rounded-md border bg-[#FFE6E6] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+      />
+      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <FaSearchengin className="text-gray-400" />
+      </div>
+      <button
+        type="submit"
+        className="absolute inset-y-0 right-0 px-4 py-2 bg-indigo-500 text-white font-semibold rounded-r-md hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none"
+      >
+        Search
+      </button>
+      </form>
+    </div>
+      </div>
+        <details id="dropOrUp" className="dropdown">
           <summary className="m-1 btn btn-info w-max">
             Filter <FaChevronDown className="ml-1" />
           </summary>

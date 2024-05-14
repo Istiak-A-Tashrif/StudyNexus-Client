@@ -11,6 +11,7 @@ import {
   } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
 import { Bounce, toast } from "react-toastify";
+import axios from "axios";
 
 export const firebaseContext = createContext(null)
 
@@ -48,9 +49,12 @@ const AuthProvider = ({children}) => {
   };
 
   // sign out
-  const userSignOut = () => {
+  const userSignOut = async () => {
+    // Clear user state
     setUser(null);
-    toast.success('Logged out', {
+  
+    // Notify user about logout
+    toast.success("Logged out", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -60,7 +64,23 @@ const AuthProvider = ({children}) => {
       progress: undefined,
       theme: "colored",
       transition: Bounce,
+    });
+  
+    try {
+      // Send logout request to server
+      const { data } = await axios(`${import.meta.env.VITE_URL}/logout`, {
+        withCredentials: true,
       });
+  
+      // Log response data
+      console.log(data);
+    } catch (error) {
+      // Handle error
+      console.error("Error logging out:", error);
+      // You can notify the user about the error if needed
+    }
+  
+    // Perform Firebase sign-out
     return signOut(auth);
   };
 

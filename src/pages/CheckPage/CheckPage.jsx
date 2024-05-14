@@ -6,10 +6,12 @@ import { useParams } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const CheckPage = () => {
   const { id } = useParams();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -31,8 +33,8 @@ const CheckPage = () => {
   });
 
   const getData = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_URL}/check/${id}?email=${user.email}`
+    const { data } = await axiosSecure(
+      `/check/${id}?email=${user.email}`
     );
     return data;
   };

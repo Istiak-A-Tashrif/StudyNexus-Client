@@ -56,7 +56,7 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
       } flex items-center justify-center`}
     >
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
-      <div className="relative bg-[#FFE6E6] w-full max-w-md mx-auto rounded-lg shadow-lg">
+      <div className="relative bg-[#FFE6E6] text-gray-900 w-full max-w-md mx-auto rounded-lg shadow-lg">
         <div className="p-6">
           <h2 className="text-lg font-semibold mb-4">Submit Marks and Feedback</h2>
           <form onSubmit={handleSubmit}>

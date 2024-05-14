@@ -7,10 +7,12 @@ import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
 import Swal from "sweetalert2";
 import TableRow from "./TableRow";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const AddedAssignments = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient()
   const {
     data: myAssignment = [],
@@ -23,8 +25,8 @@ const AddedAssignments = () => {
   });
 
   const getData = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_URL}/added?email=${user?.email}`
+    const { data } = await axiosSecure(
+      `/added?email=${user?.email}`
     );
     return data;
   };

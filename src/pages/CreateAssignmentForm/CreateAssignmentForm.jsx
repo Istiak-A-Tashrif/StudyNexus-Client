@@ -72,7 +72,7 @@ const CreateAssignmentForm = () => {
       return;
     } 
     if(descriptionLength > 200 ) {
-      setDescriptionError("Description must not exceed 100 characters.");
+      setDescriptionError("Description must not exceed 200 characters.");
       return
     } else {
       setDescriptionError("");

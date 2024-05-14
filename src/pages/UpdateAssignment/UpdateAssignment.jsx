@@ -14,7 +14,7 @@ const UpdateAssignment = () => {
   const navigate = useNavigate();
 
   const getData = async () => {
-    const { data } = await axios.get(`${import.meta.env.VITE_URL}/details/${id}`);
+    const { data } = await axios(`${import.meta.env.VITE_URL}/details/${id}`);
     return data;
   };
 

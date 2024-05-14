@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
 import useAuth from "../../Hooks/useAuth";
 import { Slide, toast } from "react-toastify";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const Register = () => {
-  const {
+  const axiosSecure = useAxiosSecure();
+    const {
     register,
     handleSubmit,
     formState: { errors },
@@ -28,7 +30,7 @@ const Register = () => {
   } = useAuth();
 
   const notify = () =>
-    toast.success("User created succcesfully", {
+    toast.success("User created successfully", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -52,9 +54,12 @@ const Register = () => {
 
   const onSubmit = (data) => {
     const { email, password, name, photo } = data;
-
+  
     createUser(email, password)
-      .then(() => {
+      .then(async (res) => { // Capture the response here
+        const { data } = await axiosSecure.post('/jwt', {
+          email: res.user.email
+        });
         notify();
         update(name, photo).then(() => {
           setUser({ ...user, displayName: name, photoURL: photo, email: email });
@@ -65,10 +70,14 @@ const Register = () => {
         notifyError();
       });
   };
+  
 
   const handleSocialLogin = (socialProvider) => {
     socialProvider()
-      .then((res) => {
+      .then(async (res) => {
+        const { data } = await axiosSecure.post('/jwt', {
+          email: res.user.email
+        });
         notify();
       })
       .catch((error) => {

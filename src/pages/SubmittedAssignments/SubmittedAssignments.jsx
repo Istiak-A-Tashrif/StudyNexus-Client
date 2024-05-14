@@ -6,9 +6,11 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import loading from "../../assets/loading.json";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const SubmittedAssignments = () => {
   const { user } =  useAuth();
+  const axiosSecure = useAxiosSecure();
   const {
     data: reviewed = [],
     isLoading: reviewLoading,
@@ -19,10 +21,9 @@ const SubmittedAssignments = () => {
     queryKey: ["reviewed"],
   });
 
-  console.log(reviewed);
   const getReviewed = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_URL}/submitted/reviewed?email=${user?.email}`
+    const { data } = await axiosSecure(
+      `/submitted/reviewed?email=${user?.email}`
     );
     return data;
   };
@@ -36,10 +37,9 @@ const SubmittedAssignments = () => {
     queryKey: ["pending"],
   });
 
-  console.log(pending);
   const getPending = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_URL}/submitted/pending?email=${user?.email}`
+    const { data } = await axiosSecure(
+      `/submitted/pending?email=${user?.email}`
     );
     return data;
   };

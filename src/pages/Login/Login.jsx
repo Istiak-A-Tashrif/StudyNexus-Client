@@ -5,6 +5,8 @@ import Lottie from "lottie-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Slide, toast } from "react-toastify";
+import axios from "axios";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,26 +16,30 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
 
   // handle social errors
   const handleSocialLogin = (socialProvider) => {
     socialProvider()
-      .then((res) => {
-        if (res.user) {
-          toast.success("Logged in", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            transition: Slide,
-          });
-          navigate(location?.state || "/");
-        }
-      })
+    .then(async (res) => {
+      if (res.user) {
+        const { data } = await axiosSecure.post('/jwt', {
+          email: res.user.email
+        });
+        toast.success("Logged in", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
+        navigate(location?.state || "/");
+      }
+    })    
       .catch((error) => {
         console.error(error.message);
         notifyError();
@@ -50,10 +56,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     loginUser(email, password)
-      .then(() => {
-        toast.success("User created successfully", {
+      .then(async (res) => {
+        const { data } = await axiosSecure.post('/jwt', {
+          email: res.user.email
+        });
+        toast.success("Logged in", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -71,6 +80,7 @@ const Login = () => {
         notifyError();
       });
   };
+  
 
   return (
     <div className="min-h-[60vh] flex justify-center items-center mt-4">
