@@ -34,14 +34,14 @@ const TableRow = ({ data, handleDelete }) => {
       </td>
       <td className="capitalize">{data?.level}</td>
       <td>{data?.postDate}</td>
-      <td>
+      {/* <td>
         <button
           className="font-bold text-blue-700 underline"
           onClick={() => navigate(`/check/${data?._id}`)}
         >
           Check: {count?.count}
         </button>
-      </td>
+      </td> */}
     </tr>
   );
 };

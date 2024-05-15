@@ -35,12 +35,17 @@ const Navbar = () => {
         <li>
           <Link to={"/createAssignment"}>Create Assignment</Link>
         </li>
-      )}
-      {!user && (
-        <li>
-          <Link to={"/register"}>Register</Link>
-        </li>
-      )}
+          )}
+          {!user && (
+            <li>
+              <Link to={"/register"}>Register</Link>
+            </li>
+          )}
+          {user && (
+            <li>
+              <Link to={"/check"}>Check</Link>
+            </li>
+          )}
     </>
   );
 

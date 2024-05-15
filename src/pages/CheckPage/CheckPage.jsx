@@ -7,7 +7,7 @@ import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
-import 'animate.css/animate.min.css';
+import "animate.css/animate.min.css";
 import { Helmet } from "react-helmet-async";
 
 const CheckPage = () => {
@@ -28,14 +28,16 @@ const CheckPage = () => {
   };
 
   const getData = async () => {
-    const { data } = await axiosSecure(`/check/${id}?email=${user.email}`);
+    const { data } = await axiosSecure(`/check?email=${user.email}`);
     return data;
   };
 
-  const { data: checkData = [], isLoading, isError, error } = useQuery(
-    ["check", id, user.email],
-    getData
-  );
+  const {
+    data: checkData = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery(["check", id, user.email], getData);
 
   if (isLoading) {
     return (
@@ -66,7 +68,7 @@ const CheckPage = () => {
       <Helmet>
         <title>StudyNexus | Check</title>
       </Helmet>
-      <ScrollRestoration/>
+      <ScrollRestoration />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {checkData.map((data, idx) => (
           <div key={idx} className="bg-white p-4 rounded-lg shadow-md">
