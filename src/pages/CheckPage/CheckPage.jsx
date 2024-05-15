@@ -10,52 +10,55 @@ import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 import 'animate.css/animate.min.css';
 import { Helmet } from "react-helmet-async";
 
-
 const CheckPage = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentFeedbackId, setCurrentFeedbackId] = useState(null);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (feedbackId) => {
+    setCurrentFeedbackId(feedbackId);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setCurrentFeedbackId(null);
   };
 
-  const {
-    data: checkData = [],
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryFn: () => getData(),
-    queryKey: ["check"],
-  });
-
   const getData = async () => {
-    const { data } = await axiosSecure(
-      `/check/${id}?email=${user.email}`
-    );
+    const { data } = await axiosSecure(`/check/${id}?email=${user.email}`);
     return data;
   };
 
+  const { data: checkData = [], isLoading, isError, error } = useQuery(
+    ["check", id, user.email],
+    getData
+  );
+
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center  min-h-[calc(100vh-300px)]">
-        <Lottie animationData={loading} loop={true} className="h-44"></Lottie>
+      <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
+        <Lottie animationData={loading} loop={true} className="h-44" />
       </div>
     );
   }
 
   if (isError || error) {
-    console.error(error);
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-300px)]">
+        <div className="text-red-500">Error: {error.message}</div>
+      </div>
+    );
   }
 
   if (checkData.length === 0) {
-    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my-6">No assignments to check.</div>;
+    return (
+      <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my-6">
+        No assignments to check.
+      </div>
+    );
   }
 
   return (
@@ -69,6 +72,7 @@ const CheckPage = () => {
             <iframe
               src={data?.demoUrl}
               className="w-full h-40 rounded-lg mb-4"
+              title={`Demo ${idx}`}
             ></iframe>
             <div className="mb-2">
               <strong className="text-[#AD88C6]">Name:</strong> {data?.userName}
@@ -104,11 +108,15 @@ const CheckPage = () => {
             </div>
             <button
               className="font-bold text-blue-700 underline"
-              onClick={handleOpenModal}
+              onClick={() => handleOpenModal(data?._id)}
             >
               Give feedback
             </button>
-            <FeedbackForm isOpen={isModalOpen} onClose={handleCloseModal} id={data?._id} />
+            <FeedbackForm
+              isOpen={isModalOpen && currentFeedbackId === data?._id}
+              onClose={handleCloseModal}
+              id={data?._id}
+            />
           </div>
         ))}
       </div>

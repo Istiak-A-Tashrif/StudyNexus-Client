@@ -18,14 +18,16 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
   };
 
   const queryClient = useQueryClient();
-  const { mutateAsync } = useMutation({
-    mutationFn: (updateData) => {
-      const { data } = axios.put(
-        `${import.meta.env.VITE_URL}/updateMarks/${id}`,
-        updateData
-      );
-      return id;
-    },
+
+  const mutationFn = async (updateData) => {
+    const { data } = await axios.put(
+      `${import.meta.env.VITE_URL}/updateMarks/${id}`,
+      updateData
+    );
+    return data;
+  };
+
+  const { mutateAsync } = useMutation(mutationFn, {
     onSuccess: () => {
       Swal.fire({
         title: "Success",
@@ -35,21 +37,31 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
 
       queryClient.invalidateQueries({ queryKey: ["check"] });
     },
+    onError: (error) => {
+      Swal.fire({
+        title: "Error",
+        text: error.message,
+        icon: "error",
+      });
+    },
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to server)
-    await mutateAsync(formData);
+    try {
+      await mutateAsync(formData);
 
-    // Clear the form
-    setFormData({
-      marks: "",
-      feedback: "",
-    });
+      // Clear the form
+      setFormData({
+        marks: "",
+        feedback: "",
+      });
 
-    // Close the modal
-    onClose();
+      // Close the modal
+      onClose();
+    } catch (error) {
+      console.error("Error updating marks:", error);
+    }
   };
 
   return (
@@ -61,14 +73,10 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
       <div className="relative bg-[#FFE6E6] text-gray-900 w-full max-w-md mx-auto rounded-lg shadow-lg">
         <div className="p-6">
-          <h2 className="text-lg font-semibold mb-4">
-            Submit Marks and Feedback
-          </h2>
+          <h2 className="text-lg font-semibold mb-4">Submit Marks and Feedback</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-control">
-              <label htmlFor="marks" className="label">
-                Marks
-              </label>
+              <label htmlFor="marks" className="label">Marks</label>
               <input
                 type="number"
                 name="marks"
@@ -81,9 +89,7 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
             </div>
 
             <div className="form-control">
-              <label htmlFor="feedback" className="label">
-                Feedback
-              </label>
+              <label htmlFor="feedback" className="label">Feedback</label>
               <textarea
                 name="feedback"
                 id="feedback"
