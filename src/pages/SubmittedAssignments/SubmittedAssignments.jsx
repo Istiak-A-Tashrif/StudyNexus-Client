@@ -9,6 +9,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 import "animate.css/animate.min.css";
 import { Helmet } from "react-helmet-async";
+import { ScrollRestoration } from "react-router-dom";
 
 const SubmittedAssignments = () => {
   const { user } = useAuth();
@@ -75,6 +76,7 @@ const SubmittedAssignments = () => {
       <Helmet>
         <title>StudyNexus | Submitted</title>
       </Helmet>
+      <ScrollRestoration/>
       <div className="text-center">
         <Lottie animationData={congrats} loop={true} className="h-48" />
         <h1 className="text-2xl font-semibold">Congratulations !!!</h1>

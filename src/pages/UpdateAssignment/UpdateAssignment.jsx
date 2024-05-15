@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format, parse } from "date-fns";
 import { useMutation, useQuery } from "react-query";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
 import Swal from "sweetalert2";
@@ -116,6 +116,7 @@ const UpdateAssignment = () => {
       <Helmet>
         <title>StudyNexus | Update</title>
       </Helmet>
+      <ScrollRestoration/>
       <form
         onSubmit={handleSubmit}
         className="max-w-2xl mx-auto my-12 p-6 space-y-6 bg-[#FFE6E6] rounded-lg shadow-md text-gray-900 animate__animated animate__fadeIn"

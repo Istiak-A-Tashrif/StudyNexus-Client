@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AssignmentSubmissionForm from "./AssignmentSubmissionForm";
-import { useNavigate, useParams } from "react-router-dom";
+import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Lottie from "lottie-react";
@@ -47,6 +47,7 @@ const AssignmentDetails = () => {
       <Helmet>
         <title>StudyNexus | Details</title>
       </Helmet>
+      <ScrollRestoration/>
       <div className="max-w-lg mx-auto p-6 bg-[#FFE6E6] rounded-lg shadow-md">
         {/* Assignment Thumbnail */}
         <img

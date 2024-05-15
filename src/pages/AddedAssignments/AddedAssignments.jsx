@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { ScrollRestoration, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
@@ -87,6 +87,7 @@ const AddedAssignments = () => {
       <Helmet>
         <title>StudyNexus | Added</title>
       </Helmet>
+      <ScrollRestoration/>
       <table className="table">
         {/* head */}
         <thead>

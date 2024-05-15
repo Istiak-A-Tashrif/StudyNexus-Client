@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, ScrollRestoration, useNavigate } from "react-router-dom";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
 import useAuth from "../../Hooks/useAuth";
 import { Slide, toast } from "react-toastify";
@@ -128,6 +128,7 @@ const Register = () => {
       <Helmet>
         <title>StudyNexus | Register</title>
       </Helmet>
+      <ScrollRestoration/>
       <TermsAndConditionsModal
         isOpen={modalOpen}
         onDecline={handleDecliance}

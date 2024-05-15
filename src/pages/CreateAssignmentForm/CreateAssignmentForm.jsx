@@ -6,7 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import { QueryClient, useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { ScrollRestoration, useNavigate } from "react-router-dom";
 import 'animate.css/animate.min.css';
 import { Helmet } from "react-helmet-async";
 
@@ -97,6 +97,7 @@ const CreateAssignmentForm = () => {
       <Helmet>
         <title>StudyNexus | Create</title>
       </Helmet>
+      <ScrollRestoration/>
       <form
       onSubmit={handleSubmit}
       className="max-w-2xl mx-auto my-12 p-6 space-y-6 bg-[#FFE6E6] rounded-lg shadow-md text-gray-900 animate__animated animate__fadeIn"

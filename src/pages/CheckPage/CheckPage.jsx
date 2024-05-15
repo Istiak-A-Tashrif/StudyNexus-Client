@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FeedbackForm from "./FeedbackForm";
 import { useQuery } from "react-query";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { ScrollRestoration, useParams } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
@@ -66,6 +66,7 @@ const CheckPage = () => {
       <Helmet>
         <title>StudyNexus | Check</title>
       </Helmet>
+      <ScrollRestoration/>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {checkData.map((data, idx) => (
           <div key={idx} className="bg-white p-4 rounded-lg shadow-md">

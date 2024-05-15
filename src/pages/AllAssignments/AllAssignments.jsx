@@ -7,6 +7,7 @@ import Lottie from "lottie-react";
 import loading from "../../assets/loading.json";
 import 'animate.css/animate.min.css';
 import { Helmet } from "react-helmet-async";
+import { ScrollRestoration } from "react-router-dom";
 
 
 const AllAssignments = () => {
@@ -87,6 +88,7 @@ const AllAssignments = () => {
       <Helmet>
         <title>StudyNexus | All</title>
       </Helmet>
+      <ScrollRestoration/>
       <div className="flex items-center justify-center my-4">
       <div className="">
       <div className="relative">

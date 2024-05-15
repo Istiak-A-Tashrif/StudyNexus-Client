@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Slide, toast } from 'react-toastify';
 import 'animate.css/animate.min.css';
 import { Helmet } from 'react-helmet-async';
+import { ScrollRestoration } from 'react-router-dom';
 
 const UserProfile = () => {
     const { user, setUser, update, notifyError } = useAuth();
@@ -48,6 +49,7 @@ const UserProfile = () => {
           <Helmet>
             <title>StudyNexus | Profile</title>
           </Helmet>
+          <ScrollRestoration/>
            <div className="w-full max-w-sm overflow-hidden rounded-lg shadow-lg bg-[#FFE6E6] text-gray-900 mx-auto">
             <div className="p-3 bg-gray-100">
             <img

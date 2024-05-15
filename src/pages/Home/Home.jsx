@@ -1,7 +1,7 @@
 import Banner from "./Banner";
 import Faq from "./Faq";
 import AssignmentCard from "./AssignmentCard";
-import { Link } from "react-router-dom";
+import { Link, ScrollRestoration } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Lottie from "lottie-react";
@@ -35,6 +35,7 @@ const Home = () => {
       <Helmet>
         <title>StudyNexus | Home</title>
       </Helmet>
+      <ScrollRestoration/>
       <Banner></Banner>
       <div className="text-center flex flex-col justify-center items-center">
         <h1 className="text-2xl md:text-3xl font-bold mt-14">Featured Assignments</h1>
