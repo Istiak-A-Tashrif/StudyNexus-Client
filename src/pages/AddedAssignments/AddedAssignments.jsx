@@ -7,14 +7,14 @@ import loading from "../../assets/loading.json";
 import Swal from "sweetalert2";
 import TableRow from "./TableRow";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
-import 'animate.css/animate.min.css';
+import "animate.css/animate.min.css";
 import { Helmet } from "react-helmet-async";
 
 const AddedAssignments = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const {
     data: myAssignment = [],
     isLoading,
@@ -26,27 +26,31 @@ const AddedAssignments = () => {
   });
 
   const getData = async () => {
-    const { data } = await axiosSecure(
-      `/added?email=${user?.email}`
-    );
+    const { data } = await axiosSecure(`/added?email=${user?.email}`);
     return data;
   };
 
   const { mutateAsync } = useMutation({
     mutationFn: async (id) => {
+<<<<<<< HEAD
       const { data } = await axiosSecure.delete(`/delete/${id}?email=${user?.email}`);
+=======
+      const { data } = await axios.delete(
+        `${import.meta.env.VITE_URL}/delete/${id}`
+      );
+>>>>>>> 1cab8412f764751f751bb6acd932da9377ee8b70
       return data;
     },
     onSuccess: (data) => {
-      if (data.deletedCount>0) {
+      if (data.deletedCount > 0) {
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
-          icon: "success"
+          icon: "success",
         });
-        queryClient.invalidateQueries({ queryKey:['added']})
+        queryClient.invalidateQueries({ queryKey: ["added"] });
       }
-    }
+    },
   });
 
   const handleDelete = async (id) => {
@@ -57,14 +61,13 @@ const AddedAssignments = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     });
-  
+
     if (result.isConfirmed) {
       await mutateAsync(id);
     }
   };
-  
 
   if (isLoading) {
     return (
@@ -79,7 +82,11 @@ const AddedAssignments = () => {
   }
 
   if (myAssignment.length === 0) {
-    return <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my6">No assignments found.</div>;
+    return (
+      <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my6">
+        No assignments found.
+      </div>
+    );
   }
 
   return (
@@ -87,7 +94,7 @@ const AddedAssignments = () => {
       <Helmet>
         <title>StudyNexus | Added</title>
       </Helmet>
-      <ScrollRestoration/>
+      <ScrollRestoration />
       <table className="table">
         {/* head */}
         <thead>
@@ -96,11 +103,17 @@ const AddedAssignments = () => {
             <th>Title</th>
             <th>Level</th>
             <th>Post Date</th>
-            <th>Total Submission</th>
+            {/* <th>Check</th> */}
           </tr>
         </thead>
         <tbody>
-          {myAssignment.map((data) => <TableRow key={data?._id} data={data} handleDelete={handleDelete} ></TableRow>)}
+          {myAssignment.map((data) => (
+            <TableRow
+              key={data?._id}
+              data={data}
+              handleDelete={handleDelete}
+            ></TableRow>
+          ))}
         </tbody>
       </table>
     </div>

@@ -67,7 +67,7 @@ const SubmittedAssignments = () => {
   if (reviewed.length === 0 && pending.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-[calc(100vh-500px)] text-2xl my-6">
-        You haven't submiited any assignment.
+        You haven't submitted any assignment.
       </div>
     );
   }
@@ -76,7 +76,7 @@ const SubmittedAssignments = () => {
       <Helmet>
         <title>StudyNexus | Submitted</title>
       </Helmet>
-      <ScrollRestoration/>
+      <ScrollRestoration />
       <div className="text-center">
         <Lottie animationData={congrats} loop={true} className="h-48" />
         <h1 className="text-2xl font-semibold">Congratulations !!!</h1>
