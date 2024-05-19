@@ -34,7 +34,7 @@ const AddedAssignments = () => {
 
   const { mutateAsync } = useMutation({
     mutationFn: async (id) => {
-      const { data } = await axios.delete(`${import.meta.env.VITE_URL}/delete/${id}`);
+      const { data } = await axiosSecure.delete(`/delete/${id}?email=${user?.email}`);
       return data;
     },
     onSuccess: (data) => {

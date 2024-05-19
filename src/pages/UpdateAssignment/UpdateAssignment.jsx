@@ -10,10 +10,14 @@ import loading from "../../assets/loading.json";
 import Swal from "sweetalert2";
 import "animate.css/animate.min.css";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const UpdateAssignment = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const {user} = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const getData = async () => {
     const { data } = await axios(`${import.meta.env.VITE_URL}/details/${id}`);
@@ -57,8 +61,8 @@ const UpdateAssignment = () => {
 
   const { mutateAsync } = useMutation({
     mutationFn: async (formData) => {
-      const { data } = await axios.patch(
-        `${import.meta.env.VITE_URL}/update/${id}`,
+      const { data } = await axiosSecure.patch(
+        `/update/${id}?email=${user?.email}`,
         formData
       );
       return data;

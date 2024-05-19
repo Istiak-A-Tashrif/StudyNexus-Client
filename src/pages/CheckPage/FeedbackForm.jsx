@@ -2,8 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 
 const FeedbackForm = ({ isOpen, onClose, id }) => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [formData, setFormData] = useState({
     marks: "",
     feedback: "",
@@ -20,8 +24,8 @@ const FeedbackForm = ({ isOpen, onClose, id }) => {
   const queryClient = useQueryClient();
 
   const mutationFn = async (updateData) => {
-    const { data } = await axios.put(
-      `${import.meta.env.VITE_URL}/updateMarks/${id}`,
+    const { data } = await axiosSecure.put(
+      `/updateMarks/${id}?email=${user?.email}`,
       updateData
     );
     return data;

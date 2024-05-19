@@ -8,11 +8,13 @@ Lottie
 import loading from "../../assets/loading.json"
 import 'animate.css/animate.min.css';
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../Hooks/useAuth";
 
 
 const AssignmentDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams(); 
+  const { user } = useAuth();
   const {data: assignmentData = {}, isLoading, isError, error} = useQuery({
     queryFn:()=> getData(),
     queryKey: ["details", id]
@@ -109,9 +111,11 @@ const AssignmentDetails = () => {
 
         {/* View Assignment Button */}
         <div className="flex flex-col md:flex-row gap-4">
+        {user.email === assignmentData.email ? 
         <button className="btn border-none bg-[#AD88C6] hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full" onClick={ () => navigate(`/update/${assignmentData?._id}`)}>
           Update Assignment
-        </button>
+        </button> : ""
+        }
         <button className="btn border-none bg-[#7469B6] hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full" onClick={handleOpenModal}>
           Take Assignment
         </button>
