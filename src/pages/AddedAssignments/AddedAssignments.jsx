@@ -32,13 +32,7 @@ const AddedAssignments = () => {
 
   const { mutateAsync } = useMutation({
     mutationFn: async (id) => {
-<<<<<<< HEAD
       const { data } = await axiosSecure.delete(`/delete/${id}?email=${user?.email}`);
-=======
-      const { data } = await axios.delete(
-        `${import.meta.env.VITE_URL}/delete/${id}`
-      );
->>>>>>> 1cab8412f764751f751bb6acd932da9377ee8b70
       return data;
     },
     onSuccess: (data) => {
