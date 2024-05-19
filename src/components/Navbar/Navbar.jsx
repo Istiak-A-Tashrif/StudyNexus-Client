@@ -41,11 +41,6 @@ const Navbar = () => {
               <Link to={"/register"}>Register</Link>
             </li>
           )}
-          {user && (
-            <li>
-              <Link to={"/check"}>Check</Link>
-            </li>
-          )}
     </>
   );
 

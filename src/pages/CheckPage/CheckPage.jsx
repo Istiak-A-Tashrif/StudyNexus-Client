@@ -28,7 +28,7 @@ const CheckPage = () => {
   };
 
   const getData = async () => {
-    const { data } = await axiosSecure(`/check?email=${user.email}`);
+    const { data } = await axiosSecure(`/check/${id}?email=${user.email}`);
     return data;
   };
 

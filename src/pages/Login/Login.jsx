@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import login from "../../assets/login.json";
 import Lottie from "lottie-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, ScrollRestoration, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Slide, toast } from "react-toastify";
 import axios from "axios";
@@ -96,6 +96,7 @@ const Login = () => {
       <Helmet>
         <title>StudyNexus | Login</title>
       </Helmet>
+      <ScrollRestoration/>
       <div className="flex items-center bg-[#FFE6E6] rounded-md justify-center flex-col md:flex-row">
         <div>
           <Lottie animationData={login} loop={true} />;

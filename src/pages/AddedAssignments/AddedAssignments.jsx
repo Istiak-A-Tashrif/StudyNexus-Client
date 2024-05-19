@@ -97,7 +97,7 @@ const AddedAssignments = () => {
             <th>Title</th>
             <th>Level</th>
             <th>Post Date</th>
-            {/* <th>Check</th> */}
+            <th>Check</th>
           </tr>
         </thead>
         <tbody>
