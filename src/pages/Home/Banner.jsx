@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import bgimg from "../../assets/media.jpg";
+import { ReactTyped } from "react-typed";
 
 const Banner = () => {
   return (
@@ -11,8 +12,17 @@ const Banner = () => {
       <div className="hero-content text-center text-neutral-content p-4 md:p-8">
         <div className="max-w-md mx-auto text-[#FFE6E6]">
           <h1 className="mb-5 text-3xl md:text-5xl font-bold">
-            Welcome to <span className="text-[#7469B6]">Study</span>
-            <span className="text-[#AD88C6]">Nexus</span>
+            Welcome to <br />
+            <span className="text-[#7469B6]">Study</span>
+            <ReactTyped
+              strings={["Nexus"]}
+              typeSpeed={200}
+              backSpeed={50}
+              loop
+              cursorChar=""
+            >
+              <span className="text-[#AD88C6]"></span>
+            </ReactTyped>
           </h1>
           <p className="mb-5 text-sm md:text-base">
             Join us in collaborative learning and enhance your skills by working
