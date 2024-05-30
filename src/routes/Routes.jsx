@@ -13,6 +13,7 @@ import Register from "../pages/Register/Register";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import Notes from "../pages/Notes/Notes";
 
 const Routes = createBrowserRouter([
   {
@@ -89,6 +90,14 @@ const Routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UserProfile></UserProfile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/notes",
+        element: (
+          <PrivateRoute>
+            <Notes></Notes>
           </PrivateRoute>
         ),
       },

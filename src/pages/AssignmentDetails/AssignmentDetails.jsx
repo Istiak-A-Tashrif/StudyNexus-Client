@@ -9,6 +9,7 @@ import loading from "../../assets/loading.json"
 import 'animate.css/animate.min.css';
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
+import AddNotes from "../../components/AddNotes/AddNotes";
 
 
 const AssignmentDetails = () => {
@@ -26,6 +27,7 @@ const AssignmentDetails = () => {
   }
   
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -33,6 +35,11 @@ const AssignmentDetails = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  // notes modal
+  const handleClose = () => {
+    setShowModal(false); // Close the modal
   };
 
   if(isLoading){
@@ -119,9 +126,13 @@ const AssignmentDetails = () => {
         <button className="btn border-none bg-[#7469B6] hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full" onClick={handleOpenModal}>
           Take Assignment
         </button>
+        <button className="btn border-none bg-[#E1AFD1] hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded-full" onClick={() => setShowModal(true)}>
+          Add Note
+        </button>
         </div>
       </div>
       <AssignmentSubmissionForm isOpen={isModalOpen} onClose={handleCloseModal} assignmentData={assignmentData} />
+      {showModal && <AddNotes title={assignmentData?.title} onClose={handleClose} />}
     </div>
   );
 };

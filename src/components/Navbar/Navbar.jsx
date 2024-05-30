@@ -35,12 +35,17 @@ const Navbar = () => {
         <li>
           <Link to={"/createAssignment"}>Create Assignment</Link>
         </li>
-          )}
-          {!user && (
-            <li>
-              <Link to={"/register"}>Register</Link>
-            </li>
-          )}
+      )}
+      {user && (
+        <li>
+          <Link to={"/notes"}>Notes</Link>
+        </li>
+      )}
+      {!user && (
+        <li>
+          <Link to={"/register"}>Register</Link>
+        </li>
+      )}
     </>
   );
 
@@ -112,9 +117,11 @@ const Navbar = () => {
             {navLink}
           </ul>
         </div>
-        <Link><h1 className="text-2xl font-extrabold font-rowdies text-[#7469B6]">
-          Study<span className="text-[#AD88C6]">Nexus</span>
-        </h1></Link>
+        <Link>
+          <h1 className="text-2xl font-extrabold font-rowdies text-[#7469B6]">
+            Study<span className="text-[#AD88C6]">Nexus</span>
+          </h1>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLink}</ul>
