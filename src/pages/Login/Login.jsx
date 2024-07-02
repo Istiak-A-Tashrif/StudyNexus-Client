@@ -5,7 +5,6 @@ import Lottie from "lottie-react";
 import { Link, ScrollRestoration, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Slide, toast } from "react-toastify";
-import axios from "axios";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 import "animate.css/animate.min.css";
 import { Helmet } from "react-helmet-async";

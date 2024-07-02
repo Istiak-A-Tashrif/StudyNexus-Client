@@ -34,4 +34,37 @@ assignment_category_0001
 3. **Search Functionality**: Easily find assignments using our powerful search feature, improving efficiency and productivity.
 4. **JWT Token Authentication**: Ensure data security with JWT token-based authentication, protecting sensitive information on private routes.
 
-Unlock the full potential of collaborative learning with StudyNexus. Join the online group-study community today! If you have any questions or feedback, feel free to reach out.
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+- MongoDB
+- Firebase account
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Istiak-A-Tashrif/StudyNexus-Client.git
+cd studynexus
+```
+
+2. Install the dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables:
+- Create a `.env` file in the root directory
+- Add your Firebase config keys
+
+4. Run the application:
+```bash
+npm start
+```
+Unlock the full potential of collaborative learning with StudyNexus. Join the online group-study community today! If you have any questions or feedback, feel free to reach out. 
+
+## Support
+
+For support or questions, please contact [Support Email](mailto:istiaktashrif@gmail.com).
